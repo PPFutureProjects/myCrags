@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Πληροφορίες Πεδίου
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-card>
+        <ion-card-header>
+            <strong><span icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">{{crag.name}}</span></strong>
+        </ion-card-header>
+        <ion-card-content>
+            <p><strong>Πεδίο: </strong> {{crag.name}}</p>
+            <hr>
+            <p><strong>Γεωγραφικό Πλάτος: </strong> {{crag.lat}}</p>
+            <p><strong>Γεωγραφικό Μήκος: </strong> {{crag.lng}}</p>
+            <br><br><br>
+            <button (click)=deleteCrag(crag._id.$oid) ion-button color="danger" block>Διαγραφή Πεδίου</button>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Αναρριχητική Ημέρα</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only  (click)=saveClimb()><ion-icon name="checkmark-circle-outline"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      Πληροφορίες Αναρρίχησης
+    </ion-card-header>
+    <ion-card-content>
+      Συμπληρώστε πληροφορίες για την αναρριχητικής σας ημέρα δημιουργώντας ένα ημερολόγιο.
+    </ion-card-content>
+  </ion-card>
+  <ion-list no-lines>
+    <ion-item>
+      <ion-label stacked>Ημερομηνία</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" ></ion-datetime>
+      <!--<ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>-->
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Σχοινοσύντροφος</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Πεδίο</ion-label>
+      <ion-select [(ngModel)]="crag">
+        <ion-option *ngFor="let crag of crags" value="crag._id">{{crag.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Διαδρομές</ion-label>
+      <ion-select [(ngModel)]="route" multiple="true" cancelText="Nah" okText="Okay!">
+        <ion-option value="1">Διαδρομή 1</ion-option>
+        <ion-option value="2">Διαδρομή 2</ion-option>
+        <ion-option value="3">Διαδρομή 3</ion-option>
+        <ion-option value="4">Διαδρομή 4</ion-option>
+        <ion-option value="5">Διαδρομή 5</ion-option>
+        <ion-option value="6">Διαδρομή 6</ion-option>
+        <ion-option value="7">Διαδρομή 7</ion-option>
+        <ion-option value="8">Διαδρομή 8</ion-option>
+        <ion-option value="9">Διαδρομή 9</ion-option>
+        <ion-option value="10">Διαδρομή 10</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Notes</ion-label>
+      <ion-textarea type="text"></ion-textarea>
+    </ion-item>
+  </ion-list>
+</ion-content>

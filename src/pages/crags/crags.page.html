@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Αναρριχητικά πεδία</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only  (click)=addCrag()><ion-icon name="add-circle"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Πεδία!</h2>
+
+  <ion-list no-lines>
+    <ion-item-sliding *ngFor="let crag of crags">
+      <button ion-item (click)="getCragInfo(crag)" class="list">
+      {{crag.name}}
+      <span class="list-item">{{crags.length}} διαδρομές</span>
+  </button>
+      <ion-item-options>
+        <button ion-button icon-only color="light" (click)="editCrag(crag)"><ion-icon name="clipboard"></ion-icon><span style="margin-right:10px;">Επεξεργασία</span></button>
+        <button ion-button icon-only color="danger" (click)="deleteCrag(crag)"><ion-icon name="trash"></ion-icon><span style="margin-right:10px;">Διαγραφή</span></button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>
