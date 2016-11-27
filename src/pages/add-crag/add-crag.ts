@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
-import { MapPage } from '../map/map.page';
-import { CragsPage } from '../crags/crags.page';
+import { MapPage } from '../map/map';
+import { CragsPage } from '../crags/crags';
 
 import { MapService } from '../../services/map.service';
 import { Crag, Route } from '../../shared/interfaces';
 
 @Component({
     selector: 'add-crag',
-    templateUrl: 'add-crag.page.html'
+    templateUrl: 'add-crag.html'
 })
 
 export class AddCragPage {

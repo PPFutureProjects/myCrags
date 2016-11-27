@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { MapPage } from '../map/map.page';
+import { MapPage } from '../map/map';
 import { ClimbPage } from '../climb/climb';
-import { CragsPage } from '../crags/crags.page';
+import { CragsPage } from '../crags/crags';
 
 
 @Component({

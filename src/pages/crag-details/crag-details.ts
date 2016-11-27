@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 import {NavController,NavParams} from 'ionic-angular';
 
-import { CragsPage } from '../crags/crags.page';
+import { CragsPage } from '../crags/crags';
 
 import {MapService} from '../../services/map.service';
 
@@ -11,7 +11,7 @@ import {Crag} from '../../shared/interfaces'
 
 @Component({
     selector:'crag-details',
-    templateUrl:'crag-details.page.html'
+    templateUrl:'crag-details.html'
 })
 
 export class CragDetailsPage{

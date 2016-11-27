@@ -3,14 +3,14 @@ import {Component, OnInit} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
 import {MapService} from '../../services/map.service';
-import {CragDetailsPage} from '../../pages/crag-details/crag-details.page';
-import {AddCragPage} from '../../pages/add-crag/add-crag.page';
+import {CragDetailsPage} from '../../pages/crag-details/crag-details';
+import {AddCragPage} from '../../pages/add-crag/add-crag';
 import {Crag, Route} from '../../shared/interfaces'
 
 
 @Component({
     selector:'page-crags',
-    templateUrl:'crags.page.html'
+    templateUrl:'crags.html'
 })
 
 export class CragsPage implements OnInit{

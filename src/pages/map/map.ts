@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 
 import { NavController, PopoverController, Platform } from 'ionic-angular';
 
-import { CragDetailsPage } from '../../pages/crag-details/crag-details.page'
+import { CragDetailsPage } from '../../pages/crag-details/crag-details'
 import { AboutPopoverPage } from '../../pages/about-popover/about-popover';
 import { MapService } from '../../services/map.service';
 import { Crag } from '../../shared/interfaces'
 
 @Component({
     selector: 'page-map',
-    templateUrl: 'map.page.html'
+    templateUrl: 'map.html'
 })
 export class MapPage implements OnInit {
     //Zoom Level
