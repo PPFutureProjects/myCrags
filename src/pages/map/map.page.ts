@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController, PopoverController } from 'ionic-angular';
+import { NavController, PopoverController, Platform } from 'ionic-angular';
 
 import { CragDetailsPage } from '../../pages/crag-details/crag-details.page'
 import { AboutPopoverPage } from '../../pages/about-popover/about-popover';
@@ -28,7 +28,8 @@ export class MapPage implements OnInit {
 
     constructor(public navController: NavController,
         public popoverController: PopoverController,
-        private mapService: MapService) {
+        private mapService: MapService,
+        public platform: Platform) {
         console.log('Constructing crags.....');
         this.loadCrags();
     }
@@ -100,12 +101,22 @@ export class MapPage implements OnInit {
             });
     }
 
-    getDirections() {
-        console.log('Getting directions....')
+    getDirections(crag) {
+        console.log('Getting directions....');
+        let destination = crag.lat + ',' + crag.lng;
+        console.log('destination: ' + destination);
+        //if we are running on ios use Apple Maps
+        if (this.platform.is('ios')) {
+            window.open('maps://?q=' + destination, '_system')
+        //if we are running on android use Google Maps
+        } else {
+            let label = encodeURI('Το Πεδίο' + crag.name);
+            window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
+        }
     }
 
     showAbout() {
         let popover = this.popoverController.create(AboutPopoverPage);
-        popover.present({ev:event});
+        popover.present({ ev: event });
     }
 }

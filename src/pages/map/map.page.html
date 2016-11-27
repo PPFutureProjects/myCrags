@@ -13,31 +13,34 @@
 </ion-header>
 
 <ion-content>
-  <sebm-google-map [mapTypeControl]="true" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-    <sebm-google-map-marker *ngFor="let crag of crags; let i=index"
-    [latitude]="crag.lat"
-    [longitude]="crag.lng"
-    [markerDraggable]="crag.draggable"
-    [iconUrl]="'./images/markers/crag.png'">
-      (markerClick)="cragClicked(crag,i)" (dragEnd)="cragDragEnd(crag, $event)">
-      <sebm-google-map-info-window>
-        <ion-navbar transparent no-lines>
-          <ion-buttons start>
-            <button ion-button icon-only (click)="getDirections()"><ion-icon name="walk"></ion-icon></button>
-          </ion-buttons>
-          <ion-label style="font-size:1.2em;" text-center>{{crag.name}}</ion-label>
-           <ion-buttons end>
-            <button ion-button icon-only (click)="getCragInfo(event, crag)"><ion-icon name="information-circle"></ion-icon></button>
-          </ion-buttons>
-        </ion-navbar>
-        <div>
-          <p>Lat: {{crag.lat}}</p>
-          <p>Lng: {{crag.lng}}</p>
-        </div>
-          <ion-item no-lines>
-            <button class="full-width" ion-button small full color="danger" (click)="deleteCrag(event,crag)"><ion-icon name="trash" color="default"> Delete</ion-icon></button>
-          </ion-item>
-      </sebm-google-map-info-window>
-    </sebm-google-map-marker>
+  <sebm-google-map [mapTypeControl]="true"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom">
+      <sebm-google-map-marker *ngFor="let crag of crags; let i=index"
+      [latitude]="crag.lat"
+      [longitude]="crag.lng"
+      [markerDraggable]="crag.draggable"
+      [iconUrl]="'./images/markers/crag.png'">
+        (markerClick)="cragClicked(crag,i)" (dragEnd)="cragDragEnd(crag, $event)">
+        <sebm-google-map-info-window>
+          <ion-navbar transparent no-lines>
+            <ion-buttons start>
+              <button ion-button icon-only (click)="getDirections(crag)"><ion-icon name="walk"></ion-icon></button>
+            </ion-buttons>
+            <ion-label style="font-size:1.2em;" text-center>{{crag.name}}</ion-label>
+            <ion-buttons end>
+              <button ion-button icon-only (click)="getCragInfo(event, crag)"><ion-icon name="information-circle"></ion-icon></button>
+            </ion-buttons>
+          </ion-navbar>
+          <div>
+            <p>Lat: {{crag.lat}}</p>
+            <p>Lng: {{crag.lng}}</p>
+          </div>
+            <ion-item no-lines>
+              <button class="full-width" ion-button small full color="danger" (click)="deleteCrag(event,crag)"><ion-icon name="trash" color="default"> Delete</ion-icon></button>
+            </ion-item>
+        </sebm-google-map-info-window>
+      </sebm-google-map-marker>
   </sebm-google-map>
 </ion-content>
