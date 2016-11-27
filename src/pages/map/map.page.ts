@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, PopoverController } from 'ionic-angular';
 
 import { CragDetailsPage } from '../../pages/crag-details/crag-details.page'
-
+import { AboutPopoverPage } from '../../pages/about-popover/about-popover';
 import { MapService } from '../../services/map.service';
 import { Crag } from '../../shared/interfaces'
 
@@ -26,7 +26,9 @@ export class MapPage implements OnInit {
     totalCrags;
     crags: Crag[];
 
-    constructor(public navController: NavController, private mapService: MapService) {
+    constructor(public navController: NavController,
+        public popoverController: PopoverController,
+        private mapService: MapService) {
         console.log('Constructing crags.....');
         this.loadCrags();
     }
@@ -100,5 +102,10 @@ export class MapPage implements OnInit {
 
     getDirections() {
         console.log('Getting directions....')
+    }
+
+    showAbout() {
+        let popover = this.popoverController.create(AboutPopoverPage);
+        popover.present({ev:event});
     }
 }

@@ -6,12 +6,19 @@
     <ion-buttons start>
       <button ion-button icon-only><ion-icon name="bookmarks"></ion-icon></button>
     </ion-buttons>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="showAbout($event)"><ion-icon name="more"></ion-icon></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <sebm-google-map [mapTypeControl]="true" [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-    <sebm-google-map-marker *ngFor="let crag of crags; let i=index" [latitude]="crag.lat" [longitude]="crag.lng" [markerDraggable]="crag.draggable"
+    <sebm-google-map-marker *ngFor="let crag of crags; let i=index"
+    [latitude]="crag.lat"
+    [longitude]="crag.lng"
+    [markerDraggable]="crag.draggable"
+    [iconUrl]="'./images/markers/crag.png'">
       (markerClick)="cragClicked(crag,i)" (dragEnd)="cragDragEnd(crag, $event)">
       <sebm-google-map-info-window>
         <ion-navbar transparent no-lines>
