@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { NavController } from 'ionic-angular';
 import { MapPage } from '../map/map.page';
 import { ClimbPage } from '../climb/climb';
 import { CragsPage } from '../crags/crags.page';
@@ -15,7 +15,8 @@ export class TabsPage {
   cragsRoot: any = CragsPage;
   addClimbRoot: any = ClimbPage;
 
-  constructor() {
+  constructor(public navController:NavController) {
 
   }
+  
 }

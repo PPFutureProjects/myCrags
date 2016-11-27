@@ -34,6 +34,10 @@ export class MapPage implements OnInit {
         this.loadCrags();
     }
 
+    refreshMap(){
+        this.loadCrags();
+    }
+
     ngOnInit() {
         console.log('Initializing crags.....');
         this.loadCrags();

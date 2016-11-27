@@ -5,7 +5,7 @@ import {NavController} from 'ionic-angular';
 import {MapService} from '../../services/map.service';
 import {CragDetailsPage} from '../../pages/crag-details/crag-details.page';
 import {AddCragPage} from '../../pages/add-crag/add-crag.page';
-import {Crag} from '../../shared/interfaces'
+import {Crag, Route} from '../../shared/interfaces'
 
 
 @Component({
@@ -14,8 +14,9 @@ import {Crag} from '../../shared/interfaces'
 })
 
 export class CragsPage implements OnInit{
-    
+    routes:Route[];
     crags:Crag[];
+    crag:Crag;
     constructor(public navController:NavController, private mapService:MapService){
         console.log('Constructing crags.....');
         this.loadCrags();

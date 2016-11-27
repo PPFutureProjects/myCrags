@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 import { MapPage } from '../map/map.page';
+import { CragsPage } from '../crags/crags.page';
 
 import { MapService } from '../../services/map.service';
+import { Crag, Route } from '../../shared/interfaces';
 
 @Component({
     selector: 'add-crag',
@@ -15,7 +17,8 @@ export class AddCragPage {
     cragLat
     cragLng
     cragDraggable: string;
-    crags;
+    crags:Crag[];
+    routes:Route[]=[];
 
     constructor(public navController: NavController, private mapService: MapService) {
 
@@ -29,7 +32,7 @@ export class AddCragPage {
     }
     addCrag() {
         console.log('Submiting.....');
-        this.crags = this.loadCrags();
+        let crags = this.loadCrags();
         var result;
         if (this.cragDraggable == 'yes') {
             var isDraggable = true;
@@ -43,7 +46,8 @@ export class AddCragPage {
             lat: parseFloat(this.cragLat),
             lng: parseFloat(this.cragLng),
             imagePath: 'unknown.jpg',
-            draggable: isDraggable
+            draggable: isDraggable,
+            routes:this.routes
         };
 
         result = this.mapService.addCrag(newCrag)
@@ -54,7 +58,8 @@ export class AddCragPage {
                 lat: parseFloat(this.cragLat),
                 lng: parseFloat(this.cragLng),
                 imagePath: '',
-                draggable: isDraggable
+                draggable: isDraggable,
+                routes:this.routes
             }
             //newCrag._id=data._id;
             this.crags.push(newCrag);
@@ -64,7 +69,7 @@ export class AddCragPage {
             this.cragDraggable = '';
             //this.cragImagePath='';
             this.loadCrags();
-            this.navController.setRoot(MapPage);
+            this.navController.setRoot(CragsPage);
         },
             err => console.log(err),
             () => console.log('OK'))

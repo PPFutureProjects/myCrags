@@ -14,7 +14,7 @@
     <ion-item-sliding *ngFor="let crag of crags">
       <button ion-item (click)="getCragInfo(crag)" class="list">
       {{crag.name}}
-      <span class="list-item">{{crags.length}} διαδρομές</span>
+      <span class="list-item">{{crag.routes.length}} διαδρομές</span>
   </button>
       <ion-item-options>
         <button ion-button icon-only color="light" (click)="editCrag(crag)"><ion-icon name="clipboard"></ion-icon><span style="margin-right:10px;">Επεξεργασία</span></button>
