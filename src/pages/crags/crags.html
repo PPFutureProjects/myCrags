@@ -1,22 +1,55 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>Αναρριχητικά πεδία</ion-title>
+  <!--<ion-title>Αναρριχητικά πεδία</ion-title>-->
+  <ion-navbar no-border-bottom color="primary">
+    
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        Όλα
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        Ενδιαφέροντα
+      </ion-segment-button>
+      <ion-segment-button value="yolo">
+        Yolo
+      </ion-segment-button>
+    </ion-segment>
     <ion-buttons end>
       <button ion-button icon-only  (click)=addCrag()><ion-icon name="add-circle"></ion-icon></button>
+      <!--<button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>-->
     </ion-buttons>
   </ion-navbar>
+  
+  <ion-toolbar no-border-top>
+    <ion-searchbar color="primary"
+                   [(ngModel)]="queryText"
+                   (ionInput)="updateCrags()"
+                   placeholder="Αναζήτηση">
+    </ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Πεδία!</h2>
-
+<ion-content padding-right="1">
   <ion-list no-lines>
-    <ion-item-sliding *ngFor="let crag of crags">
-      <button ion-item (click)="getCragInfo(crag)" class="list">
-      {{crag.name}}
-      <span class="list-item">{{crag.routes.length}} διαδρομές</span>
-  </button>
+    <ion-item-sliding *ngFor="let crag of crags" color="primary">
+      <ion-item>
+      <ion-thumbnail item-left>
+        <img src="./images/crags/unknown.jpg">
+      </ion-thumbnail>
+      <h2>{{crag.name}}</h2>
+      <p> <span class="list-item">{{crag.routes.length}} διαδρομές</span></p>
+      <button ion-button clear item-right (click)="getCragInfo(crag)" class="list"><ion-icon name="information-circle"></ion-icon></button>
+    </ion-item>
       <ion-item-options>
+        <button ion-button color="favorite" (click)="addFavorite(slidingItem, crag)" *ngIf="segment === 'all'">
+            Favorite
+        </button>
+        <button ion-button color="gold" (click)="addYolo(slidingItem, crag)" *ngIf="segment === 'all'">
+            Yolo
+        </button>
+        <button ion-button icon-only color="danger" (click)="removeFavorite(slidingItem, crag, 'Αφαίρεση Ενδιαφέρον')" *ngIf="segment==='favorites'">Αφαίρεση</button>
+        <button ion-button icon-only color="danger" (click)="removeYolo(slidingItem, crag, 'Αφαίρεση Yolo')" *ngIf="segment==='yolo'">Αφαίρεση</button>
         <button ion-button icon-only color="light" (click)="editCrag(crag)"><ion-icon name="clipboard"></ion-icon><span style="margin-right:10px;">Επεξεργασία</span></button>
         <button ion-button icon-only color="danger" (click)="deleteCrag(crag)"><ion-icon name="trash"></ion-icon><span style="margin-right:10px;">Διαγραφή</span></button>
       </ion-item-options>

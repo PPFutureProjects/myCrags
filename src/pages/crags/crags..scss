@@ -1,21 +1,53 @@
 page-crags {
-    
+
+    .segment-ios .segment-button.segment-activated {
+    color: #5b91da;
+    background-color: #fff; 
+    transition: 100ms all linear;
+    }
+
+    .segment-ios .segment-button:first-of-type {
+        color: #fff;
+    }
+
+    .segment-ios .segment-button:not(:first-of-type) {
+        color: #fff;
+    }
+
+
+    .segment-ios .segment-button {
+        border-color: #fff;
+    }
+
+    ion-content {
+        padding-right: 390px;
+    }
+
+    .scroll-content {
+        background-color: #5b91da;
+        color: fff;
+    }
+
+    .scroll-content h2 {
+        color: fff;
+    }
+
     ion-item-sliding {
         margin: 5px;
-        padding-right: 3px;
+       // padding-right: 3px;
     }
     
     .list {
-        font-size: 1.2em;
+        font-size: 1em;
         font-weight: bold;
         color:    #5b91da;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
     .list-item {
         display: block;
         color: #cecece;
-        font-weight: 400;
-        margin-top: 10px;
+        font-weight: 200;
+        margin-top: 5px;
     }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 
-import {NavController} from 'ionic-angular';
+import {NavController, ItemSliding} from 'ionic-angular';
 
 import {MapService} from '../../services/map.service';
 import {CragDetailsPage} from '../../pages/crag-details/crag-details';
@@ -14,6 +14,10 @@ import {Crag, Route} from '../../shared/interfaces'
 })
 
 export class CragsPage implements OnInit{
+
+    segment = 'all';
+    excludeCrags = [];
+    queryText = '';
     routes:Route[];
     crags:Crag[];
     crag:Crag;
@@ -37,11 +41,35 @@ export class CragsPage implements OnInit{
         this.navController.push(AddCragPage);
     }
 
+    updateSchedule(){
+
+    }
+    
+    addFavorite(slidingItem: ItemSliding, cragData){
+
+    }
+
+    addYolo(slidingItem: ItemSliding, cragData){
+
+    }
+
+    removeFavorite(slidingItem: ItemSliding, cragData, title){
+
+    }
+
+    removeYolo(slidingItem: ItemSliding, cragData, title){
+
+    }
+
     editCrag(crag):void{
 
     }
 
     deleteCrag(crag):void{
+
+    }
+
+    updateCrags(){
 
     }
 
