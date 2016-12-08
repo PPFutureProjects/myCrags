@@ -3,10 +3,10 @@ import {Component} from '@angular/core';
 import {NavController,NavParams} from 'ionic-angular';
 
 import { CragsPage } from '../crags/crags';
-
+import { AddRoutePage } from '../add-route/add-route';
 import {MapService} from '../../services/map.service';
 
-import {Crag} from '../../shared/interfaces'
+import {Crag, Route} from '../../shared/interfaces'
 
 
 @Component({
@@ -18,8 +18,10 @@ export class CragDetailsPage{
     
     crag:Crag;
     crags:Crag[];
+    //routes:Route[];
     constructor(public navParams:NavParams, private navController:NavController, private mapService:MapService){
         this.crag=this.navParams.get('crag');
+       //this.crag.routes=this.navParams.get('routes');
     }
 
     deleteCrag(id){
@@ -43,6 +45,10 @@ export class CragDetailsPage{
         },
         err=>console.log(err),
         ()=>console.log('OK'))
+    }
+
+    addRouteToCrag(crag:Crag){
+        this.navController.push(AddRoutePage,{crag:crag});
     }
 
     loadCrags() {

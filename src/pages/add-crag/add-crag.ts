@@ -18,7 +18,7 @@ export class AddCragPage {
     cragLng
     cragDraggable: string;
     crags:Crag[];
-    routes:Route[]=[];
+    routes:Route[];
 
     constructor(public navController: NavController, private mapService: MapService) {
 
@@ -32,7 +32,7 @@ export class AddCragPage {
     }
     addCrag() {
         console.log('Submiting.....');
-        let crags = this.loadCrags();
+        //let crags = this.loadCrags();
         var result;
         if (this.cragDraggable == 'yes') {
             var isDraggable = true;

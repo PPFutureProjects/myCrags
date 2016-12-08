@@ -10,9 +10,10 @@ export interface Crag {
 
 export interface Route {
     _id?: string;
+    cragId:string;
+    name: string;
     orderNo:string;
     routeNo:string;
-    name?: string;
     grade:string;
     heigth:string;
     climbType:string; //sport, trad, mixed....

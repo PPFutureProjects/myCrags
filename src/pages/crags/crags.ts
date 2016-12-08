@@ -31,7 +31,7 @@ export class CragsPage implements OnInit{
         this.loadCrags();
     }
 
-    getCragInfo(crag){
+    getCragInfo(crag:Crag){
         this.navController.push(CragDetailsPage, {
             crag:crag
         });
@@ -74,9 +74,10 @@ export class CragsPage implements OnInit{
     }
 
     loadCrags() {
+        var that=this;
         this.mapService.getCrags()
             .subscribe(data => {
-                this.crags = data;
+                that.crags = data;
         })
     }
 }
