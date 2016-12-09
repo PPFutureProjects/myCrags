@@ -62,16 +62,8 @@ export class AddRoutePage {
           climbType: this.climbType,
           qDraws: this.qDraws
         }
-        console.log('before push '+newRoute);
-        console.log('that routes '+that.crag.routes);
-        console.log('this routes '+this.crag.routes);
         that.crag.routes.push(newRoute);
       });
-      // .subscribe(()=>{
-        
-      // })
-        
-        console.log('after push '+newRoute);
         this.name = '';
         this.orderNo = '';
         this.routeNo = '';
