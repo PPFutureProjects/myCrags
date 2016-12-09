@@ -51,7 +51,7 @@ routesUrl:string;
     addRoute (route){
         var headers=new Headers();
         headers.append('Content-Type','application/json');
-        return this.http.put(this.cragsUrl+'/'+ route.cragId.$oid +'?apiKey='+this.apiKey, JSON.stringify({$push:route}),{headers:headers})
+        return this.http.put(this.cragsUrl+'/'+ route.cragId.$oid +'?apiKey='+this.apiKey, JSON.stringify({$push:{"routes":route}}),{headers:headers})
             .map(res=>res.json());
     }
 }
