@@ -38,8 +38,8 @@
       <ion-item>
         <ion-icon name="pin" item-left></ion-icon>
         <ion-label>Πεδίο</ion-label>
-        <ion-select multiple="false">
-          <ion-option *ngFor="let crag of crags" value="">{{crag.name}}</ion-option>
+        <ion-select>
+          <ion-option *ngFor="let crag of crags" value="crag.name">{{crag.name}}</ion-option>
         </ion-select>
       </ion-item>
 

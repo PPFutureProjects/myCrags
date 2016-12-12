@@ -4,6 +4,7 @@ import { MyApp } from './app.component';
 import { HomePage, MapPage, CragsPage, AddCragPage, CragDetailsPage,
         TabsPage, ClimbPage, AboutPopoverPage, AddRoutePage } from '../pages/pages';
 
+import { CragComponent } from '../shared/components/crag/crag-component';
 
 import {MapService} from '../services/map.service';
 
@@ -20,7 +21,8 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     TabsPage,
     ClimbPage,
     AboutPopoverPage,
-    AddRoutePage    
+    AddRoutePage,
+    CragComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),
