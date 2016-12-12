@@ -18,10 +18,10 @@ export class AddCragPage {
     cragLng
     cragDraggable: string;
     crags:Crag[];
-    routes:Route[];
+    routes:Route[]=[];
 
     constructor(public navController: NavController, private mapService: MapService) {
-
+        this.loadCrags();
     }
 
     getLocation() {

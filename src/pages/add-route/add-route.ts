@@ -14,7 +14,7 @@ export class AddRoutePage {
 
   crag: Crag;
   route: Route;
-  routes:Route[]=[];
+  routes: Route[] = [];
   name: string;
   orderNo: string;
   routeNo: string;
@@ -26,7 +26,6 @@ export class AddRoutePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams, public mapService: MapService) {
     this.crag = this.navParams.get('crag');
-    console.log('id'+ this.crag._id)
   }
 
   ionViewDidLoad() {
@@ -35,9 +34,8 @@ export class AddRoutePage {
 
   addRoute() {
     var result;
-    this.routes=this.crag.routes;
-    console.log('this routes '+this.crag.routes);
-    var newRoute :Route= {
+    this.routes = this.crag.routes;
+    var newRoute: Route = {
       //_id:'',
       name: this.name,
       cragId: this.crag._id,
@@ -52,7 +50,6 @@ export class AddRoutePage {
     result = this.mapService.addRoute(newRoute)
       .subscribe(data => {
         newRoute = {
-          //_id:data._id,
           name: this.name,
           cragId: this.crag._id,
           orderNo: '',
@@ -63,7 +60,6 @@ export class AddRoutePage {
           qDraws: this.qDraws
         }
         that.crag.routes.push(newRoute);
-      });
         this.name = '';
         this.orderNo = '';
         this.routeNo = '';
@@ -71,12 +67,11 @@ export class AddRoutePage {
         this.heigth = '';
         this.climbType = '';
         this.qDraws = null;
-        
-        this.navCtrl.setRoot(CragsPage);
+
+        this.navCtrl.pop();
         console.log(newRoute);
-       }//,
-  //     err => console.log(err),
-  //     //add toast notification
-  //     () => console.log('OK'));
-  // }
+      },
+      err => console.log(err),
+      () => console.log('OK'))
+  }
 }

@@ -1,0 +1,43 @@
+<ion-item text-wrap>
+    <ion-card>
+
+        <ion-item>
+            <ion-thumbnail item-left>
+                <img src="assets/images/crags/unknown.jpg">
+            </ion-thumbnail>
+            {{crag.name}}
+            <ion-avatar item-right>
+                <ion-row center text-center>
+                    <ion-col>
+                        <button ion-fab mini class="topbutton" (click)="showItOnMap(crag)"><ion-icon name="pin"></ion-icon></button>
+                    </ion-col>
+                    <ion-col>
+                        <p>Χάρτης</p>
+                    </ion-col>
+                </ion-row>
+            </ion-avatar>
+        </ion-item>
+
+        <ion-row class="left-border-primary" center>
+            <ion-col>
+                <button color="primary" clear small (click)="viewComments(thread.key)">
+                    <ion-icon name="quote"></ion-icon>
+                    <div>{{crag.routes.length}} Διαδρομές</div>
+                </button>
+            </ion-col>
+            <ion-col center text-center>
+                <ion-row>
+                    <ion-col width-33>
+                        <button ion-fab mini (click)="getDirections(crag)"><ion-icon name='walk'></ion-icon></button>
+                    </ion-col>
+                    <ion-col width-33>
+                        <button ion-fab mini><ion-icon name='cloudy-night'></ion-icon></button>
+                    </ion-col>
+                    <ion-col width-33>
+                        <button ion-fab mini><ion-icon name="information-circle"></ion-icon></button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-item>

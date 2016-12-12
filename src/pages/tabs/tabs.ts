@@ -18,5 +18,4 @@ export class TabsPage {
   constructor(public navController:NavController) {
 
   }
-  
 }

@@ -70,13 +70,22 @@
   </ion-list>
   <ion-list no-lines>
     <ion-toolbar>
-       <ion-title color="primary" [hidden]="crag.routes == 0"><span style="color:#fff;">Διαδρομές</span></ion-title>
+       <ion-title color="primary" [hidden]="crag.routes.length == 0">Διαδρομές</ion-title>
       <ion-buttons end>
         <button ion-button icon-only (click)=addRouteToCrag(crag)><ion-icon name="add-circle"></ion-icon></button>
       </ion-buttons>
-      <ion-list-header [hidden]="crag.routes > 0">
+      <ion-list-header [hidden]="crag.routes.length > 0">
         Δεν υπαρχουν καταχωρημενες διαδρομες.
       </ion-list-header>
     </ion-toolbar>
   </ion-list>
+   <ion-list no-lines>
+        <ion-item-sliding *ngFor="let route of crag.routes">
+          <button ion-item (click)="showRouteDetails(route)">{{route.name}} (<span class="routeInfo">{{route.grade}}</span>)</button>
+          <ion-item-options>
+            <button ion-button icon-only color="light" (click)="makeItFavorite()"><ion-icon name="heart">Αγαπημένη</ion-icon></button>
+            <button ion-button icon-only color="light" (click)="makeItYolo()"><ion-icon name="flame">Yolo</ion-icon></button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
 </ion-content>
