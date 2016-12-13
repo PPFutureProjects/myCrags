@@ -1,6 +1,4 @@
 <ion-item-sliding>
-
-
     <ion-item text-wrap>
         <ion-card>
 
@@ -38,7 +36,7 @@
                             <button ion-fab mini (click)=weatherForecast()><ion-icon name='cloudy-night'></ion-icon></button>
                         </ion-col>
                         <ion-col width-33>
-                            <button ion-fab mini><ion-icon name="information-circle"></ion-icon></button>
+                            <button ion-fab mini (click)="getCragInfo(event, crag)"><ion-icon name="information-circle"></ion-icon></button>
                         </ion-col>
                     </ion-row>
                 </ion-col>
@@ -48,5 +46,7 @@
     <ion-item-options>
         <button ion-button color="favorite" (click)="addFavorite(slidingItem, crag)" >Favorite</button>
         <button ion-button color="gold" (click)="addYolo(slidingItem, crag)">Yolo</button>
+        <button ion-button icon-only color="danger" (click)="removeFavorite(slidingItem, crag, 'Αφαίρεση Ενδιαφέρον')" *ngIf="segment==='favorites'">Αφαίρεση</button>
+        <button ion-button icon-only color="danger" (click)="removeYolo(slidingItem, crag, 'Αφαίρεση Yolo')" *ngIf="segment==='yolo'">Αφαίρεση</button>
     </ion-item-options>
 </ion-item-sliding>

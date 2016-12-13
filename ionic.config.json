@@ -2,5 +2,15 @@
   "name": "cragsMap",
   "app_id": "7dcda868",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://api.wunderground.com/api/v2/"
+    },
+    {
+      "path": "/search",
+      "proxyUrl": "http://autocomplete.wunderground.com/v2/"
+    }
+  ]
 }

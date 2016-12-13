@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ItemSliding } from 'ionic-angular';
 
 import { MapService } from '../../services/map.service';
+import { MappingsService } from '../../services/mappings.service';
+
 import { CragDetailsPage } from '../../pages/crag-details/crag-details';
 import { AddCragPage } from '../../pages/add-crag/add-crag';
 import { Crag, Route } from '../../shared/interfaces'
@@ -23,7 +25,7 @@ export class CragsPage implements OnInit {
     crag: Crag;
     userLat: any;
     userLng: any;
-    constructor(public navController: NavController, private mapService: MapService) {
+    constructor(public navController: NavController, public mapService: MapService, public mappingsService: MappingsService) {
         console.log('Constructing crags.....');
         this.getCurrentLocation();
         this.loadCrags();
@@ -47,7 +49,7 @@ export class CragsPage implements OnInit {
         this.navController.push(AddCragPage);
     }
 
-    updateSchedule() {
+    updateCrags() {
 
     }
 
@@ -79,26 +81,26 @@ export class CragsPage implements OnInit {
 
     }
 
-    updateCrags() {
+    searchCrags() {
 
     }
 
     loadCrags() {
         var that = this;
-        return new Promise(resolve=>{
-        this.mapService.getCrags()
-            .subscribe(data => {
-                that.crags = this.applyHaversine(data);
-                console.log('that: ', that.crags);
-                console.log('this: ', this.crags);
-                that.crags.sort((locationA, locationB)=>{
-                    return locationA.distance - locationB.distance;
+        return new Promise(resolve => {
+            this.mapService.getCrags()
+                .subscribe(data => {
+                    that.crags = this.applyHaversine(data);
+                    that.crags.sort((locationA, locationB) => {
+                        return locationA.distance - locationB.distance;
+                    });
+                    resolve(that.crags)
                 });
-                resolve(that.crags)
-            });
         });
     }
 
+
+    //Haversine algorithm
     applyHaversine(locations) {
         let that = this;
         let userLocation = {
@@ -120,6 +122,7 @@ export class CragsPage implements OnInit {
         return locations;
     }
 
+    //Haversine algorithm
     getDistanceBetweenPoints(start, end, units) {
         let earthRadius = {
             miles: 3958.8,
@@ -147,8 +150,8 @@ export class CragsPage implements OnInit {
     toRad(x) {
         return x * Math.PI / 180;
     }
-
-    getCurrentLocation(){
+    //get users current location
+    getCurrentLocation() {
         let that = this;
         navigator.geolocation.getCurrentPosition((position) => {
             that.userLat = position.coords.latitude;

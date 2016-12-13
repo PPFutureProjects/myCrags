@@ -1,0 +1,28 @@
+<ion-item-sliding>
+    <ion-item text-wrap>
+        <ion-card>
+
+            <ion-item>
+                {{route.name}}
+                <ion-avatar item-right>
+                    <ion-row center text-center>
+                        <ion-col>
+                            <img class="navImg" src="assets/images/logos/climber_white_vs.png" />
+                        </ion-col>
+                        <ion-col>
+                            <p>Δυσκολία</p>
+                            <p>{{route.grade}} </p>
+                        </ion-col>
+                    </ion-row>
+                </ion-avatar>
+            </ion-item>
+            
+        </ion-card>
+    </ion-item>
+    <ion-item-options>
+        <button ion-button color="favorite" (click)="addFavorite(slidingItem, crag)" >Favorite</button>
+        <button ion-button color="gold" (click)="addYolo(slidingItem, crag)">Yolo</button>
+        <button ion-button icon-only color="danger" (click)="removeFavorite(slidingItem, crag, 'Αφαίρεση Ενδιαφέρον')" *ngIf="segment==='favorites'">Αφαίρεση</button>
+        <button ion-button icon-only color="danger" (click)="removeYolo(slidingItem, crag, 'Αφαίρεση Yolo')" *ngIf="segment==='yolo'">Αφαίρεση</button>
+    </ion-item-options>
+</ion-item-sliding>

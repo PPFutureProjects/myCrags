@@ -1,6 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
+    <img class="navImg" src="assets/images/logos/climber_rope_white.png" />
     <ion-title>Αναρριχητική Ημέρα</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)=saveClimb()><ion-icon name="checkmark-circle" style="color:#ffffff;"></ion-icon></button>
@@ -26,17 +27,17 @@
       <ion-datetime displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
     </ion-item>-->
       <ion-item>
-        <ion-icon name="person" item-left></ion-icon>
+        <ion-icon name="person" item-left color="primary"></ion-icon>
         <ion-input type="text" placeholder="Σχοινοσύντροφος"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-icon name="calendar" item-left></ion-icon>
+        <ion-icon name="calendar" item-left color="primary"></ion-icon>
         <ion-label>Ημερομηνία</ion-label>
         <ion-datetime displayFormat="DD MMM, YYYY" [(ngModel)]="visitDate"></ion-datetime>
       </ion-item>
 
       <ion-item>
-        <ion-icon name="pin" item-left></ion-icon>
+        <ion-icon name="pin" item-left color="primary"></ion-icon>
         <ion-label>Πεδίο</ion-label>
         <ion-select>
           <ion-option *ngFor="let crag of crags" value="crag.name">{{crag.name}}</ion-option>
@@ -44,7 +45,7 @@
       </ion-item>
 
   <ion-item>
-    <ion-icon name="navigate" item-left></ion-icon>
+    <ion-icon name="navigate" item-left color="primary"></ion-icon>
     <ion-label>Διαδρομή</ion-label>
     <ion-select [(ngModel)]="route" multiple="true" cancelText="Nah" okText="Okay!">
       <ion-option value="1">Διαδρομή 1</ion-option>

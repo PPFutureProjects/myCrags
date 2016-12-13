@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, NavController } from 'ionic-angular';
 
 import { Crag } from '../../interfaces';
 import { MapService } from '../../../services/map.service'
-
+import { CragDetailsPage, WeatherPage } from '../../../pages/pages';
 
 @Component({
     selector: 'crag-card',
@@ -18,6 +18,7 @@ export class CragComponent  {
 
 
     constructor(public mapService: MapService,
+                public navController:NavController,
                 public platform:Platform) {
 
     }
@@ -27,6 +28,12 @@ export class CragComponent  {
         
     }
 
+    getCragInfo(event, crag) {
+        this.navController.push(CragDetailsPage, {
+            crag: crag
+        });
+    }    
+
     //routes button
     viewCragRoutes(_id:string){
         this.onViewCragRoutes.emit(_id);
@@ -35,6 +42,7 @@ export class CragComponent  {
    //cloud-sun button
    weatherForecast(){
        console.log('getting weather forcast');
+       this.navController.setRoot(WeatherPage);
    }
 
    //walk button

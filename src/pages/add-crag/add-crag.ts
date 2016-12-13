@@ -30,9 +30,10 @@ export class AddCragPage {
             this.cragLng = position.coords.longitude;
         });
     }
+
+    //add crag button
     addCrag() {
         console.log('Submiting.....');
-        //let crags = this.loadCrags();
         var result;
         if (this.cragDraggable == 'yes') {
             var isDraggable = true;
@@ -41,10 +42,10 @@ export class AddCragPage {
         }
 
         var newCrag = {
-            //_id:'',
             name: this.cragName,
             lat: parseFloat(this.cragLat),
             lng: parseFloat(this.cragLng),
+            placeType:'crag',
             imagePath: 'unknown.jpg',
             draggable: isDraggable,
             routes:this.routes
@@ -53,15 +54,14 @@ export class AddCragPage {
         result = this.mapService.addCrag(newCrag)
         result.subscribe(data => {
             newCrag = {
-                // _id:data._id,
                 name: this.cragName,
                 lat: parseFloat(this.cragLat),
                 lng: parseFloat(this.cragLng),
+                placeType:'crag',
                 imagePath: '',
                 draggable: isDraggable,
                 routes:this.routes
             }
-            //newCrag._id=data._id;
             this.crags.push(newCrag);
             this.cragName = '';
             this.cragLat = '';

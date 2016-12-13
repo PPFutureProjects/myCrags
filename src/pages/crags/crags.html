@@ -20,36 +20,12 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar no-border-top>
-    <ion-searchbar color="primary" [(ngModel)]="queryText" (ionInput)="updateCrags()" placeholder="Αναζήτηση">
+    <ion-searchbar color="primary" [(ngModel)]="queryText" (ionInput)="searchCrags($event)" placeholder="Αναζητήστε κάποιο πεδίο.....">
     </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-list no-lines>
-    <!--<ion-item-sliding *ngFor="let crag of crags" color="primary">
-      <ion-item>
-        <ion-thumbnail item-left>
-          <img src="assets/images/crags/unknown.jpg">
-        </ion-thumbnail>
-        <h2>{{crag.name}}</h2>
-        <p> <span class="list-item">{{crag.routes.length}} διαδρομές</span></p>
-        <button ion-button clear item-right (click)="getCragInfo(crag)" class="list"><ion-icon style="font-size:30px;" icon-only name="information-circle"></ion-icon></button>
-      </ion-item>-->
-
-      <crag-card *ngFor="let crag of crags" [crag]="crag" (onViewCragRoutes)="viewCragRoutes($event)" (onGetWeatherReport)="getWeatherReport()"></crag-card>
-
-      <!--<ion-item-options>
-        <button ion-button color="favorite" (click)="addFavorite(slidingItem, crag)" *ngIf="segment === 'all'">
-            Favorite
-        </button>
-        <button ion-button color="gold" (click)="addYolo(slidingItem, crag)" *ngIf="segment === 'all'">
-            Yolo
-        </button>
-        <button ion-button icon-only color="danger" (click)="removeFavorite(slidingItem, crag, 'Αφαίρεση Ενδιαφέρον')" *ngIf="segment==='favorites'">Αφαίρεση</button>
-        <button ion-button icon-only color="danger" (click)="removeYolo(slidingItem, crag, 'Αφαίρεση Yolo')" *ngIf="segment==='yolo'">Αφαίρεση</button>
-        <button ion-button icon-only color="light" (click)="editCrag(crag)"><ion-icon name="clipboard"></ion-icon><span style="margin-right:10px;">Επεξεργασία</span></button>
-        <button ion-button icon-only color="danger" (click)="deleteCrag(crag)"><ion-icon name="trash"></ion-icon><span style="margin-right:10px;">Διαγραφή</span></button>
-      </ion-item-options>
-    </ion-item-sliding>-->
+      <crag-card *ngFor="let crag of crags" [crag]="crag" [hidden]="crag.hide" (onViewCragRoutes)="viewCragRoutes($event)" (onGetWeatherReport)="getWeatherReport()"></crag-card>
   </ion-list>
 </ion-content>

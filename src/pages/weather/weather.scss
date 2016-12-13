@@ -1,0 +1,23 @@
+page-weather {
+
+    .weather{
+        background: #0087be;
+        color:#fff;
+    } 
+
+    .location, .icon, .description, {
+        text-align:center;
+    }
+
+    .temp{
+        text-align:center;
+        font-size:70px;
+        font-weight: normal;
+    }
+
+    ion-input, ion-textarea {
+    background-color: #fff;
+    border: 1px solid #fff;
+    padding-left: 10px;
+}
+}
