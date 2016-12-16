@@ -47,6 +47,7 @@ export class AddCragPage {
             lng: parseFloat(this.cragLng),
             placeType:'crag',
             imagePath: 'unknown.jpg',
+            icon:'assets/images/markers/crag.png',
             draggable: isDraggable,
             routes:this.routes
         };
@@ -59,6 +60,7 @@ export class AddCragPage {
                 lng: parseFloat(this.cragLng),
                 placeType:'crag',
                 imagePath: '',
+                icon:'crag.png',
                 draggable: isDraggable,
                 routes:this.routes
             }

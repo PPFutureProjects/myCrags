@@ -5,6 +5,7 @@ export interface Crag {
     lng: number;
     placeType:string;//crag, parking, camp...
     draggable: boolean;
+    icon:string;
     imagePath: string;
     routes:Route[];
 }

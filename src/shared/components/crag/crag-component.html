@@ -10,7 +10,7 @@
                 <ion-avatar item-right>
                     <ion-row center text-center>
                         <ion-col>
-                            <button ion-fab mini class="topbutton" (click)="showItOnMap(crag)"><ion-icon name="pin"></ion-icon></button>
+                            <button ion-fab mini class="topbutton delete" (click)="showItOnMap(crag)"><ion-icon name="navigate" color="secondary"></ion-icon></button>
                         </ion-col>
                         <ion-col>
                             <p>Απόσταση</p>
@@ -30,13 +30,13 @@
                 <ion-col center text-center>
                     <ion-row>
                         <ion-col width-33>
-                            <button ion-fab mini (click)="getDirections(crag)"><ion-icon name='walk'></ion-icon></button>
+                            <button ion-fab mini (click)="getDirections(crag)"><ion-icon name='walk' color="secondary"></ion-icon></button>
                         </ion-col>
                         <ion-col width-33>
-                            <button ion-fab mini (click)=weatherForecast()><ion-icon name='cloudy-night'></ion-icon></button>
+                            <button ion-fab mini (click)="weatherForecast(crag)"><ion-icon name='cloudy-night' color="gold"></ion-icon></button>
                         </ion-col>
                         <ion-col width-33>
-                            <button ion-fab mini (click)="getCragInfo(event, crag)"><ion-icon name="information-circle"></ion-icon></button>
+                            <button ion-fab mini (click)="getCragInfo(crag)"><ion-icon name="information-circle" color="light"></ion-icon></button>
                         </ion-col>
                     </ion-row>
                 </ion-col>

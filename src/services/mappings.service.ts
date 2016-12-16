@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Crag, Route } from '../shared/interfaces';
+//mport { Crag, Route } from '../shared/interfaces';
 import { MapService } from '../services/map.service';
 
 @Injectable()

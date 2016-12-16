@@ -9,8 +9,10 @@ import { CragComponent } from '../shared/components/crag/crag-component';
 import {MapService} from '../services/map.service';
 import {MappingsService} from '../services/mappings.service';
 import {WeatherService} from '../services/weather.service';
+import {ConnectivityService} from '../services/connectivity.service';
 
-import { AgmCoreModule } from 'angular2-google-maps/core';
+import { GoogleMapsAPIWrapper } from 'angular2-google-maps/core/services/google-maps-api-wrapper';
+import { AgmCoreModule} from 'angular2-google-maps/core';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBbsOlMryAHu2ESwHHSwrDBIUU7fiENNoM'})
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBbsOlMryAHu2ESwHHSwrDBIUU7fiENNoM', libraries: ["places"]})
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -50,7 +52,9 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
   providers: [
     MapService,
     MappingsService,
-    WeatherService
+    WeatherService,
+    ConnectivityService,
+    GoogleMapsAPIWrapper
   ]
 })
 export class AppModule {}

@@ -1,62 +1,184 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { NavController, NavParams, PopoverController, AlertController, Platform } from 'ionic-angular';
+import { MapsAPILoader } from 'angular2-google-maps/core';
+import { Geolocation } from 'ionic-native';
 
-import { NavController, PopoverController, Platform } from 'ionic-angular';
-
-import { CragDetailsPage } from '../../pages/crag-details/crag-details'
-import { AboutPopoverPage } from '../../pages/about-popover/about-popover';
+import { CragDetailsPage, AboutPopoverPage, WeatherPage } from '../../pages/pages';
 import { MapService } from '../../services/map.service';
+import { ConnectivityService } from '../../services/connectivity.service';
 import { Crag } from '../../shared/interfaces'
+
+declare var window: any;
+declare var google: any;
 
 @Component({
     selector: 'page-map',
     templateUrl: 'map.html'
 })
 export class MapPage implements OnInit {
-    //Zoom Level
-    zoom: number = 10;
-    //Start position
-    lat: number = 38.1307068;
-    lng: number = 23.7213821;
-    //properties
-    cragName: string;
-    cragLat: string;
-    cragLng: string;
-    cragDraggable: string;
-    cragImagePath: string;
-    totalCrags;
-    crags: Crag[];
-
-    constructor(public navController: NavController,
-        public popoverController: PopoverController,
-        private mapService: MapService,
-        public platform: Platform) {
-        console.log('Constructing crags.....');
-        this.loadCrags();
+  
+    map = {
+        //Zoom Level
+        zoom: 8,
+        //Start position
+        lat: 38.1307068,
+        lng: 23.7213821
     }
+    //properties
+    rootPage: boolean = true;
+    currentPosition: Crag
+    totalCrags;
+    crag: Crag;
+    crags: Crag[];
+    firstTime: boolean = true;
+    isDisplayOfflineMode: boolean = false;
+    isClicked: boolean;
+    opened: boolean = false;
 
-    refreshMap(){
-        this.loadCrags();
+    constructor(public navController: NavController, public navParams: NavParams, public popoverController: PopoverController, public connectivityService: ConnectivityService,
+        public zone: NgZone, public alertController: AlertController, public mapsAPILoader: MapsAPILoader, private mapService: MapService, public platform: Platform) {
+
+        console.log('Constructing crags.....');
+        this.autocomplete();
+
+        this.crag = this.navParams.get('crag');
+        //request from crags page or crag-details page to 
+        //focus on specific crag
+        if (this.crag) {
+            this.showCrag();
+            this.rootPage = this.navParams.get('rootPage');
+        } else {
+            //map page
+            this.loadMap();
+            this.initializeCurrenPosition();
+            this.loadCrags();
+        }
+        console.log('cragInfo ', this.crag)
     }
 
     ngOnInit() {
-        console.log('Initializing crags.....');
+        //this.initializeCurrenPosition();
         this.loadCrags();
+        this.autocomplete();
+    }
+
+    refreshMap() {
+        this.loadCrags();
+    }
+
+    // networkConnectivity() {
+    //     var that = this;
+    //     setInterval(() => {
+    //         if (that.firstTime) {
+    //             //that.loadCurrentPosition();
+    //             //that.initializeCurrenPosition();
+    //             that.loadMap();
+    //             //that.loadCrags();
+    //             that.autocomplete();
+    //         } else {
+    //             if (!that.isDisplayOfflineMode)
+    //                 //that.autocomplete();
+    //                 that.displayOffline();
+    //         }
+    //     }, 2000);
+    // }
+
+    //load map centered in current position
+    loadMap() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.map = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+                zoom: 10
+            };
+            this.firstTime = false;
+        }, (err) => {
+        });
+    }
+
+    //auto complete function
+    autocomplete() {
+        this.mapsAPILoader.load().then(() => {
+            let autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete').getElementsByTagName('input')[0], {});
+            google.maps.event.addListener(autocomplete, 'place_changed', () => {
+                let place = autocomplete.getPlace();
+                this.map.lat = place.geometry.location.lat();
+                this.map.lng = place.geometry.location.lng();
+                this.map.zoom = 12;
+                console.log(place);
+            });
+        });
+    }
+
+    // displayOffline() {
+    //     this.isDisplayOfflineMode = true;
+    //     let alert = this.alertController.create({
+    //         title: 'Συνδεσιμότητα Δικτύου',
+    //         subTitle: 'Εκτός Δικτύου',
+    //         buttons: [{
+    //             text: 'Επανάληψη',
+    //             handler: () => {
+    //                 this.isDisplayOfflineMode = false;
+    //             }
+    //         }]
+    //     });
+    //     alert.present();
+    // }
+
+    //navigate fab button - show current position pin button
+    goToCurrentPosition() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.currentPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+                name: 'Είμαι εδώ!',
+                imagePath: '',
+                icon: 'assets/images/markers/climber_mini.png',
+                placeType: 'none',
+                draggable: false,
+                routes: []
+            };
+            this.crags.push(this.currentPosition);
+            this.map.lat = position.coords.latitude;
+            this.map.lng = position.coords.longitude;
+            this.map.zoom = 16;
+        });
+        console.log(this.map.lat, this.map.lng);
+    }
+
+    initializeCurrenPosition() {
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.currentPosition = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+                name: 'Είμαι εδώ!',
+                imagePath: '',
+                icon: 'assets/images/markers/climber_mini.png',
+                placeType: 'none',
+                draggable: false,
+                routes: []
+            };
+        });
     }
 
     cragClicked(crag: Crag, index: number) {
         console.log('crag : ' + crag.name + ' index : ' + index);
     }
 
+    //ability to drag draggable crag and save new location
     cragDragEnd(crag, event) {
         console.log('cragEnd ', crag, event);
 
-        var updCrag = {
+        var updCrag: Crag = {
             _id: crag._id,
             name: crag.name,
             lat: event.coords.lat,
             lng: event.coords.lng,
             imagePath: crag.imagePath,
-            draggable: crag.draggable
+            draggable: crag.draggable,
+            placeType: crag.imagePath,
+            icon: crag.icon,
+            routes: crag.routes
         };
         console.log('C ', crag);
         console.log('UC ', updCrag);
@@ -67,13 +189,9 @@ export class MapPage implements OnInit {
         console.log('UC ', updCrag);
     }
 
-    // deleteCrag(event,crag){
-    //         this.navController.push(CragDetailsPage,{
-    //             crag:crag
-    //         });
-    //     }
 
-    deleteCrag(event, crag) {
+    //delete crag
+    deleteCrag(crag) {
         var crags = this.crags;
 
         this.mapService.deleteCrag(crag._id.$oid)
@@ -90,12 +208,17 @@ export class MapPage implements OnInit {
             });
     }
 
-    getCragInfo(event, crag) {
-        this.navController.push(CragDetailsPage, {
-            crag: crag
-        });
+    //show spacific crag(marker)
+    showCrag() {
+        console.log(this.crag)
+        this.map.zoom = 16;
+        this.map.lat = this.crag.lat;
+        this.map.lng = this.crag.lng;
+        console.log(this.map.lat);
+        console.log(this.map.lat);
     }
 
+    //load crags from db
     loadCrags() {
         this.mapService.getCrags()
             .subscribe(data => {
@@ -105,6 +228,7 @@ export class MapPage implements OnInit {
             });
     }
 
+    //walk button on infoWindow navigate to choosen crag
     getDirections(crag) {
         console.log('Getting directions....');
         let destination = crag.lat + ',' + crag.lng;
@@ -112,13 +236,27 @@ export class MapPage implements OnInit {
         //if we are running on ios use Apple Maps
         if (this.platform.is('ios')) {
             window.open('maps://?q=' + destination, '_system')
-        //if we are running on android use Google Maps
+            //if we are running on android use Google Maps
         } else {
             let label = encodeURI('Το Πεδίο' + crag.name);
             window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
         }
     }
 
+    //cloud button on infoWindow
+    weatherForecast(crag) {
+        console.log('getting weather forcast');
+        this.navController.push(WeatherPage, { crag: crag });
+    }
+
+    //Info button on infowindow Open crag-details page
+    getCragInfo(crag) {
+        this.navController.push(CragDetailsPage, {
+            crag: crag
+        });
+    }
+
+    //show about page
     showAbout() {
         let popover = this.popoverController.create(AboutPopoverPage);
         popover.present({ ev: event });

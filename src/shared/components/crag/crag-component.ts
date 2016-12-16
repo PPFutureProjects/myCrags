@@ -3,7 +3,7 @@ import { Platform, NavController } from 'ionic-angular';
 
 import { Crag } from '../../interfaces';
 import { MapService } from '../../../services/map.service'
-import { CragDetailsPage, WeatherPage } from '../../../pages/pages';
+import { CragDetailsPage, WeatherPage, MapPage } from '../../../pages/pages';
 
 @Component({
     selector: 'crag-card',
@@ -11,41 +11,45 @@ import { CragDetailsPage, WeatherPage } from '../../../pages/pages';
 })
 
 
-export class CragComponent  {
+export class CragComponent {
 
     @Input() crag: Crag;
     @Output() onViewCragRoutes = new EventEmitter<string>();
 
+    rootPage:boolean=false;
 
     constructor(public mapService: MapService,
-                public navController:NavController,
-                public platform:Platform) {
-
+        public navController: NavController,
+        public platform: Platform) {
     }
 
     //pin button
-    showItOnMap(){
-        
+    showItOnMap(crag, rootPage) {
+        this.navController.push(MapPage, 
+        {   crag:crag,
+            rootPage:this.rootPage
+        });
     }
 
-    getCragInfo(event, crag) {
+    //information button
+    getCragInfo(crag) {
         this.navController.push(CragDetailsPage, {
             crag: crag
         });
-    }    
+    }
 
     //routes button
-    viewCragRoutes(_id:string){
+    viewCragRoutes(_id: string) {
         this.onViewCragRoutes.emit(_id);
     }
-   
-   //cloud-sun button
-   weatherForecast(){
-       console.log('getting weather forcast');
-       this.navController.setRoot(WeatherPage);
-   }
 
-   //walk button
+    //cloud-sun button
+    weatherForecast(crag) {
+        console.log('getting weather forcast');
+        this.navController.push(WeatherPage, { crag: crag });
+    }
+
+    //walk button
     getDirections(crag) {
         console.log('Getting directions....');
         let destination = crag.lat + ',' + crag.lng;
@@ -53,7 +57,7 @@ export class CragComponent  {
         //if we are running on ios use Apple Maps
         if (this.platform.is('ios')) {
             window.open('maps://?q=' + destination, '_system')
-        //if we are running on android use Google Maps
+            //if we are running on android use Google Maps
         } else {
             let label = encodeURI('Το Πεδίο' + crag.name);
             window.open('geo:0,0?q=' + destination + '(' + label + ')', '_system');
