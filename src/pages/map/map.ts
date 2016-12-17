@@ -16,7 +16,7 @@ declare var google: any;
     templateUrl: 'map.html'
 })
 export class MapPage implements OnInit {
-  
+
     map = {
         //Zoom Level
         zoom: 8,
@@ -126,7 +126,7 @@ export class MapPage implements OnInit {
     // }
 
     //list fab button - show list nearby crags 
-    showNearbyCrags(){
+    showNearbyCrags() {
         this.navController.push(CragsListPage);
     }
 
@@ -194,23 +194,41 @@ export class MapPage implements OnInit {
         console.log('UC ', updCrag);
     }
 
-
     //delete crag
     deleteCrag(crag) {
+        var that = this;
         var crags = this.crags;
 
-        this.mapService.deleteCrag(crag._id.$oid)
-            .subscribe(data => {
-                if (data.n == 1) {
-                    for (var i = 0; i < crags.length; i++) {
-                        if (crags[i]._id == crag._id.$oid) {
-                            crags.splice(i, 1);
-                        }
+        let confirm = this.alertController.create({
+            title: 'Διαγραφή Πεδίου?',
+            message: 'Θέλετε να διαγράψετε το ' + crag.name + ' ?',
+            buttons: [
+                {
+                    text: 'Άκυρο',
+                    handler: () => {
+                        console.log('Disagree clicked');
+                    }
+                },
+                {
+                    text: 'ΟΚ',
+                    handler: () => {
+                        that.mapService.deleteCrag(crag._id.$oid)
+                            .subscribe(data => {
+                                if (data.n == 1) {
+                                    for (var i = 0; i < crags.length; i++) {
+                                        if (crags[i]._id == crag._id.$oid) {
+                                            crags.splice(i, 1);
+                                        }
+                                    }
+                                }
+                                that.loadCrags();
+                                this.totalCrags = this.crags.length;
+                            });
                     }
                 }
-                this.loadCrags();
-                this.totalCrags = this.crags.length;
-            });
+            ]
+        });
+        confirm.present();
     }
 
     //show spacific crag(marker)

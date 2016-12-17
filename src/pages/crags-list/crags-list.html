@@ -1,25 +1,26 @@
 <ion-header>
- 
+
   <ion-navbar color="secondary">
     <ion-title>Κοντινά Πεδία</ion-title>
   </ion-navbar>
- 
+
 </ion-header>
- 
- 
+
+
 <ion-content>
- 
-    <ion-list no-lines>
-        <ion-item *ngFor="let crag of crags"> 
-            <ion-avatar item-left>
-                <ion-icon name="pin"></ion-icon>
-            </ion-avatar>
-            <h2>{{crag.name}}</h2>
-            <p>Απόσταση : {{crag.distance}} km</p>
-            <ion-avatar item-right>
-                <ion-icon name="navigate"></ion-icon>
-            </ion-avatar>
-        </ion-item>
-    </ion-list>
- 
+
+  <ion-list no-lines>
+    <ion-item *ngFor="let crag of crags">
+      <ion-thumbnail item-left>
+        <img src={{crag.icon}}/>
+        <!--<ion-icon name="pin"></ion-icon>-->
+      </ion-thumbnail>
+      <h2>{{crag.name}}</h2>
+      <p>Απόσταση : {{crag.distance}} km</p>
+      <ion-avatar item-right>
+        <button ion-fab mini class="navigate" (click)="showItOnMap(crag)"><ion-icon name="navigate" color="secondary"></ion-icon></button>
+      </ion-avatar>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

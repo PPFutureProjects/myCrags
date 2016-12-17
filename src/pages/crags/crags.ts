@@ -25,6 +25,7 @@ export class CragsPage implements OnInit {
     crag: Crag;
     userLat: any;
     userLng: any;
+
     constructor(public navController: NavController, public mapService: MapService, public mappingsService: MappingsService) {
         console.log('Constructing crags.....');
         this.getCurrentLocation();
@@ -32,19 +33,13 @@ export class CragsPage implements OnInit {
     }
 
     ngOnInit() {
-        let that = this;
         console.log('Initializing crags.....');
-        that.segment = 'all';
+        this.segment = 'all';
         this.getCurrentLocation();
         this.loadCrags();
     }
 
-    getCragInfo(crag: Crag) {
-        this.navController.push(CragDetailsPage, {
-            crag: crag
-        });
-    }
-
+    //add button navigate to add-crag page
     addCrag(): void {
         this.navController.push(AddCragPage);
     }
@@ -85,6 +80,7 @@ export class CragsPage implements OnInit {
 
     }
 
+    //load crags
     loadCrags() {
         var that = this;
         return new Promise(resolve => {
@@ -98,7 +94,6 @@ export class CragsPage implements OnInit {
                 });
         });
     }
-
 
     //Haversine algorithm
     applyHaversine(locations) {

@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 
 import { MapService } from '../../services/map.service';
 
+import { MapPage } from '../pages';
+
 @Component({
   selector: 'page-crags-list',
   templateUrl: 'crags-list.html'
@@ -12,8 +14,9 @@ export class CragsListPage {
   crags: any;
   userLat: any;
   userLng: any;
+  rootPage:boolean=false;
 
-  constructor(public navCtrl: NavController, public mapService: MapService, ) {
+  constructor(public navController: NavController, public mapService: MapService, ) {
     this.getCurrentLocation();
     this.loadCrags();
   }
@@ -22,6 +25,12 @@ export class CragsListPage {
     console.log('Hello CragsListPage Page');
   }
 
+  showItOnMap(crag, rootPage) {
+        this.navController.push(MapPage, 
+        {   crag:crag,
+            rootPage:this.rootPage
+        });
+    }
 
   //load crags
   loadCrags() {
