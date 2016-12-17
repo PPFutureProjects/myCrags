@@ -3,7 +3,7 @@ import { NavController, NavParams, PopoverController, AlertController, Platform 
 import { MapsAPILoader } from 'angular2-google-maps/core';
 import { Geolocation } from 'ionic-native';
 
-import { CragDetailsPage, AboutPopoverPage, WeatherPage } from '../../pages/pages';
+import { CragDetailsPage, CragsListPage, AboutPopoverPage, WeatherPage } from '../../pages/pages';
 import { MapService } from '../../services/map.service';
 import { ConnectivityService } from '../../services/connectivity.service';
 import { Crag } from '../../shared/interfaces'
@@ -124,6 +124,11 @@ export class MapPage implements OnInit {
     //     });
     //     alert.present();
     // }
+
+    //list fab button - show list nearby crags 
+    showNearbyCrags(){
+        this.navController.push(CragsListPage);
+    }
 
     //navigate fab button - show current position pin button
     goToCurrentPosition() {

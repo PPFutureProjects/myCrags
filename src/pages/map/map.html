@@ -15,7 +15,7 @@
     <button ion-fab><ion-icon name="arrow-dropup"></ion-icon></button>
     <ion-fab-list side="top">
       <button ion-fab class="navigate" (click)="goToCurrentPosition()"><ion-icon name="navigate" color="secondary"></ion-icon></button>
-      <button ion-fab class="calculate" (click)="showDistances()"><ion-icon name="calculator" color="danger"></ion-icon></button>
+      <button ion-fab class="calculate" (click)="showNearbyCrags()"><ion-icon name="list" color="danger"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
   <!--<ion-fab left bottom>
@@ -26,7 +26,7 @@
   <ion-toolbar no-border-top>
     <ion-input color="primary" id="autocomplete" type="text" name="title" placeholder="Αναζητήστε περιοχή...."></ion-input>
   </ion-toolbar>
-  <sebm-google-map [scrollwheel]="false" [mapTypeControl]="true" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom"
+  <sebm-google-map id="map" [scrollwheel]="false" [mapTypeControl]="true" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom"
     (mapClick)="mapClicked($event)">
     <sebm-google-map-marker *ngFor="let crag of crags; let i=index" [latitude]="crag.lat" [longitude]="crag.lng" [markerDraggable]="crag.draggable"
       [iconUrl]="crag.icon" (markerClick)="cragClicked(crag,i)" (dragEnd)="cragDragEnd(crag, $event)">
@@ -58,7 +58,7 @@
           <button ion-fab mini class="delete" (click)="deleteCrag(crag)"><ion-icon name="trash" color="primary"></ion-icon></button>
         </ion-row>
         # Διαδρομές
-        <ion-badge color="#f08a00;" item-right><span>{{crag.routes.length}}</span></ion-badge>
+        <ion-badge color="primary" item-right><span>{{crag.routes.length}}</span></ion-badge>
       </sebm-google-map-info-window>
     </sebm-google-map-marker>
     <!--<sebm-google-map-circle [latitude]="map.lat" [longitude]="map.lng" [radius]="50" [fillColor]="'red'" [circleDraggable]="false"
