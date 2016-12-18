@@ -2,13 +2,16 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Route } from '../shared/interfaces';
+import { IRoute } from '../shared/interfaces';
 
 @Injectable()
 export class MapService {
     apiKey: string;
     cragsUrl: string;
     routesUrl: string;
+    queryUrl:string='?q={';
+    field:string='"placeType"';
+    collection:string='"crag"';
 
     constructor(private http: Http) {
         this.apiKey = 'UT8zWAvAS-I7BFIqMLYZa3GoTKse0uXt';
@@ -20,6 +23,15 @@ export class MapService {
     //get all crags
     getCrags() {
         return this.http.get(this.cragsUrl + '?apiKey=' + this.apiKey)
+            .map(res => res.json());
+    }
+
+    //get all crags
+    //https://api.mlab.com/api/1/databases/my-db/collections/my-coll?q={"active": true}&apiKey=myAPIKey
+    getCragsDistinct() {
+        //return this.http.get('https://api.mlab.com/api/1/databases/meanmap/collections/crags?s={\"distinct\":'+this.collection+','+'\"key\":'+this.field+'}&apiKey='+this.apiKey)
+                return this.http.get('https://api.mlab.com/api/1/databases/meanmap/collections/crags?f={\"placeType\":'+1+',\"_id\":'+0+'}&apiKey='+this.apiKey)
+
             .map(res => res.json());
     }
 

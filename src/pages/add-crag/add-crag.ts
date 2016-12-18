@@ -5,7 +5,7 @@ import { MapPage } from '../map/map';
 import { CragsPage } from '../crags/crags';
 
 import { MapService } from '../../services/map.service';
-import { Crag, Route } from '../../shared/interfaces';
+import { ICrag, IRoute } from '../../shared/interfaces';
 
 @Component({
     selector: 'add-crag',
@@ -17,14 +17,21 @@ export class AddCragPage {
     cragLat
     cragLng
     cragDraggable: string;
-    crags:Crag[];
-    routes:Route[]=[];
+    crags: ICrag[];
+    routes: IRoute[] = [];
+    cragPlaceType;
+    cragIcon;
+    iconPath:string='assets/images/markers/'
+    cragMarker: string = 'crag.png'
+    parkingMarker: string = 'parking.png'
+    camping_areaMarker: string = 'camping_area.png'
 
     constructor(public navController: NavController, private mapService: MapService) {
         this.loadCrags();
     }
 
-    getLocation() {
+    //get user's current location
+    getCurrentLocation() {
         navigator.geolocation.getCurrentPosition((position) => {
             this.cragLat = position.coords.latitude;
             this.cragLng = position.coords.longitude;
@@ -35,21 +42,34 @@ export class AddCragPage {
     addCrag() {
         console.log('Submiting.....');
         var result;
+
+        //set if marker draggable
         if (this.cragDraggable == 'yes') {
             var isDraggable = true;
         } else {
             var isDraggable = false;
         }
 
-        var newCrag = {
+        //set markers icon
+        if (this.cragPlaceType == 'crag') {
+            this.cragIcon = this.cragMarker;
+        } else if (this.cragPlaceType == 'parking') {
+            this.cragIcon = this.parkingMarker;
+        } else if(this.cragPlaceType == 'camping_area') {
+            this.cragIcon = this.camping_areaMarker;
+        } else {
+            this.cragIcon = this.cragMarker;
+        }
+
+        var newCrag:ICrag = {
             name: this.cragName,
             lat: parseFloat(this.cragLat),
             lng: parseFloat(this.cragLng),
-            placeType:'crag',
+            placeType: this.cragPlaceType,
             imagePath: 'unknown.jpg',
-            icon:'assets/images/markers/crag.png',
+            icon:this.iconPath+this.cragIcon,
             draggable: isDraggable,
-            routes:this.routes
+            routes: this.routes
         };
 
         result = this.mapService.addCrag(newCrag)
@@ -58,17 +78,17 @@ export class AddCragPage {
                 name: this.cragName,
                 lat: parseFloat(this.cragLat),
                 lng: parseFloat(this.cragLng),
-                placeType:'crag',
+                placeType: this.cragPlaceType,
                 imagePath: '',
-                icon:'crag.png',
+                icon: this.cragIcon,
                 draggable: isDraggable,
-                routes:this.routes
+                routes: this.routes
             }
             this.crags.push(newCrag);
             this.cragName = '';
             this.cragLat = '';
             this.cragLng = '';
-            this.cragDraggable = '';
+            //this.cragDraggable = '';
             //this.cragImagePath='';
             this.loadCrags();
             this.navController.setRoot(CragsPage);

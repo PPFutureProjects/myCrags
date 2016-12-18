@@ -4,7 +4,7 @@ import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { WeatherSettingsPage } from '../pages';
 import { WeatherService } from '../../services/weather.service';
 
-import { Crag } from '../../shared/interfaces';
+import { ICrag } from '../../shared/interfaces';
 
 @Component({
   selector: 'page-weather',
@@ -20,7 +20,7 @@ export class WeatherPage implements OnInit {
   weather;
   queryText;
   results;
-  crag: Crag;
+  crag: ICrag;
   loadedData: boolean = false;
 
   constructor(public navCtrl: NavController,

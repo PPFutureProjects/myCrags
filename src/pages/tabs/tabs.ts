@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { MapPage } from '../map/map';
-import { ClimbPage } from '../climb/climb';
-import { CragsPage } from '../crags/crags';
+import { CragsPage, CragsListPage } from '../pages';
 
 
 @Component({
@@ -11,11 +10,15 @@ import { CragsPage } from '../crags/crags';
 export class TabsPage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  mapRoot: any = MapPage;
-  cragsRoot: any = CragsPage;
-  addClimbRoot: any = ClimbPage;
+  climbsRoot: any = MapPage;
+  cragsListRoot: any = CragsListPage;
+  //forumRoot: any = AddClimbPage;
+ mySelectedIndex: number;
 
-  constructor(public navController:NavController) {
-
+  constructor(public navController:NavController, navParams:NavParams) {
+    this.mySelectedIndex=navParams.data.tabIndex ||0;
+  }
+  lets($event){
+    console.log('Hello tabs Page');
   }
 }

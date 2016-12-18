@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Platform, NavController } from 'ionic-angular';
 
-import { Crag } from '../../interfaces';
+import { ICrag } from '../../interfaces';
 import { MapService } from '../../../services/map.service'
 import { CragDetailsPage, WeatherPage, MapPage } from '../../../pages/pages';
 
@@ -13,7 +13,7 @@ import { CragDetailsPage, WeatherPage, MapPage } from '../../../pages/pages';
 
 export class CragComponent {
 
-    @Input() crag: Crag;
+    @Input() crag: ICrag;
     @Output() onViewCragRoutes = new EventEmitter<string>();
 
     rootPage:boolean=false;

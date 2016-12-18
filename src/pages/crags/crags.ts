@@ -7,7 +7,7 @@ import { MappingsService } from '../../services/mappings.service';
 
 import { CragDetailsPage } from '../../pages/crag-details/crag-details';
 import { AddCragPage } from '../../pages/add-crag/add-crag';
-import { Crag, Route } from '../../shared/interfaces'
+import { ICrag, IRoute } from '../../shared/interfaces'
 
 
 @Component({
@@ -20,9 +20,9 @@ export class CragsPage implements OnInit {
     segment = 'all';
     excludeCrags = [];
     queryText = '';
-    routes: Route[];
+    routes: IRoute[];
     crags: any;
-    crag: Crag;
+    crag: ICrag;
     userLat: any;
     userLng: any;
 

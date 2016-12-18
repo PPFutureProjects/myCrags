@@ -1,37 +1,46 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Προσθήκη νέου πεδίου</ion-title>
+    <ion-title>Προσθήκη νέου σημείου</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="getLocation()"><ion-icon name="navigate"></ion-icon></button>
+      <button ion-button icon-only (click)="getCurrentLocation()"><ion-icon name="navigate"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Πρόσθεσε Πεδίο!</h2>
+  <h2>Πρόσθεσε Σημείο!</h2>
   <form (submit)="addCrag()">
     <ion-list no-lines>
-      <ion-item>
-        <ion-label stacked>Ονομασία</ion-label>
-        <ion-input [(ngModel)]="cragName" type="text" value="" name="cragName" placeholder="Ονομασία"></ion-input>
+       <ion-item>
+        <ion-icon name='pin' color="primary" item-left></ion-icon>
+        <ion-label>Είδος Σημείου</ion-label>
+        <ion-select [(ngModel)]="cragPlaceType" name="cragPlaceType">
+          <ion-option value="crag">Πεδίο</ion-option>
+          <ion-option value="parking">Πάρκινγκ</ion-option>
+          <ion-option value="camping_area">Κάμπινγκ</ion-option>
+        </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label stacked>Γεωγραφικό Πλάτος</ion-label>
-        <ion-input [(ngModel)]="cragLat" type="text" value="" name="cragLat" placeholder="Γεωγραφικό Πλάτος"></ion-input>
+        <ion-label floating>Ονομασία</ion-label>
+        <ion-input [(ngModel)]="cragName" type="text" value="" name="cragName" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label stacked>Γεωγραφικό Μήκος</ion-label>
-        <ion-input [(ngModel)]="cragLng" type="text" value="" name="lng" placeholder="Γεωγραφικό Μήκος"></ion-input>
+        <ion-label floating>Γεωγραφικό Πλάτος</ion-label>
+        <ion-input [(ngModel)]="cragLat" type="text" value="" name="cragLat" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label stacked>Μετακίνηση</ion-label>
+        <ion-label floating>Γεωγραφικό Μήκος</ion-label>
+        <ion-input [(ngModel)]="cragLng" type="text" value="" name="lng" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Μετακίνηση στο χάρτη</ion-label>
         <ion-select [(ngModel)]="cragDraggable" name="cragDraggable">
           <ion-option value="yes">Ναι</ion-option>
           <ion-option value="no">Όχι</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
-        <button ion-button type="submit" block>Προσθήκη Πεδίου</button>
+        <button ion-button type="submit" block>Προσθήκη Σημείου</button>
       </ion-item>
     </ion-list>
   </form>

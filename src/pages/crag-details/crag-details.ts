@@ -6,7 +6,7 @@ import { CragsPage } from '../crags/crags';
 import { AddRoutePage } from '../add-route/add-route';
 import {MapService} from '../../services/map.service';
 
-import {Crag, Route} from '../../shared/interfaces'
+import {ICrag, IRoute} from '../../shared/interfaces'
 
 
 @Component({
@@ -16,8 +16,8 @@ import {Crag, Route} from '../../shared/interfaces'
 
 export class CragDetailsPage{
     
-    crag:Crag;
-    crags:Crag[];
+    crag:ICrag;
+    crags:ICrag[];
     //routes:Route[];
     constructor(public navParams:NavParams, private navController:NavController, private mapService:MapService){
         this.crag=this.navParams.get('crag');
@@ -47,7 +47,7 @@ export class CragDetailsPage{
         ()=>console.log('OK'))
     }
 
-    addRouteToCrag(crag:Crag){
+    addRouteToCrag(crag:ICrag){
         this.navController.push(AddRoutePage,{crag:crag});
     }
 

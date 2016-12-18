@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Άκυρο</button>
+    </ion-buttons>
+
+    <ion-title>
+      Φίλτρα
+    </ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="applyFilters()">ΟΚ</button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="outer-content">
+
+  <ion-list>
+    <ion-list-header>Ειδος Σημειου</ion-list-header>
+
+    <ion-item *ngFor="let crag of crags" [attr.crag]="crag.name | lowercase">
+      <span item-left class="dot"></span>
+      <ion-label>{{crag.name}}</ion-label>
+      <ion-toggle [(ngModel)]="crag.isChecked" color="secondary"></ion-toggle>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list>
+    <button ion-item (click)="resetFilters()" detail-none class="reset-filters">
+      Reset All Filters
+    </button>
+  </ion-list>
+
+</ion-content>

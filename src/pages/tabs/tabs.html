@@ -1,5 +1,5 @@
-<ion-tabs class="tabs-positive tabs-icon-top">
-  <ion-tab [root]="mapRoot" tabTitle="Χάρτης" tabIcon="map"></ion-tab>
-  <ion-tab [root]="addClimbRoot" tabTitle="Αναρρίχηση" tabIcon="add"></ion-tab>
-  <ion-tab [root]="cragsRoot" tabTitle="Πεδία" tabIcon="podium"></ion-tab>
+<ion-tabs [selectedIndex]="mySelectedIndex" class="tabs-positive tabs-icon-top">
+  <ion-tab [root]="climbsRoot" tabTitle="Χάρτης" tabIcon="map"></ion-tab>
+  <ion-tab [root]="cragsListRoot" tabTitle="Αναρρίχηση" tabIcon="add"></ion-tab>
+  <!--<ion-tab [root]="forumRoot" tabTitle="Πεδία" tabIcon="podium"></ion-tab>-->
 </ion-tabs> 

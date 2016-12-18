@@ -15,10 +15,45 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+$categories: (
+ crag: color($colors, primary),
+ parking: #AC282B,
+ camping_area: #8E8D93,
+//  tooling: #FE4C52,
+//  services: #FD8B2D,
+//  design: #FED035,
+//  workshop: #69BB7B,
+//  food: #3BC7C4,
+//  documentation: #B16BE3,
+//  navigation: #6600CC,
+);
+
+@function auxiliary-categories() {
+  @return map-remove($categories);
+}
+
+// page-schedule {
+//   @each $track, $value in auxiliary-categories() {
+//    ion-item-sliding[track=#{$track}] ion-label {
+//      border-left: 2px solid $value;
+//      padding-left: 10px;
+//    }
+//   }
+//}
+
+
 ion-input, ion-textarea {
     background-color: #F3F3F3;
     border: 1px solid #cecece;
     padding-left: 10px;
+}
+
+// ion-icon{
+//     color: #0087be;
+// }
+
+ion-list.menu{
+     margin: -1px 0 15px 0;
 }
 
 ion-textarea {
@@ -37,4 +72,4 @@ button {
     margin: auto;
     width: 30px;
     height: 30px;
-  }
+}

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {MapService} from '../../services/map.service';
 
-import {Crag} from '../../shared/interfaces'
+import {ICrag} from '../../shared/interfaces'
 
 /*
   Generated class for the Climb page.
@@ -11,15 +11,16 @@ import {Crag} from '../../shared/interfaces'
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-climb',
-  templateUrl: 'climb.html'
+  selector: 'page-add-climb',
+  templateUrl: 'add-climb.html'
 })
-export class ClimbPage {
+export class AddClimbPage {
 
-  crags:Crag[]=[];
+  crags:ICrag[]=[];
 
   constructor(public navCtrl: NavController, public mapService:MapService) {
     this.loadCrags();
+    console.log('Hello Climb Page');
   }
 
   ionViewDidLoad() {

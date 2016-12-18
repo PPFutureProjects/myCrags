@@ -1,4 +1,4 @@
-export interface Crag {
+export interface ICrag {
     _id?: string;
     name?: string;
     lat: number;
@@ -7,10 +7,10 @@ export interface Crag {
     draggable: boolean;
     icon:string;
     imagePath: string;
-    routes:Route[];
+    routes:IRoute[];
 }
 
-export interface Route {
+export interface IRoute {
     _id?: string;
     cragId:string;
     name: string;
@@ -20,4 +20,12 @@ export interface Route {
     heigth:string;
     climbType:string; //sport, trad, mixed....
     qDraws:number;
+}
+
+export interface IPage {
+    title: string;
+    component: any;
+    icon: string;
+    logsOut?: boolean;
+    index?: number;
 }

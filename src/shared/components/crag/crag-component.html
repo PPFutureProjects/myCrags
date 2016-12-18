@@ -1,4 +1,4 @@
-<ion-item-sliding>
+<!--<ion-item-sliding>-->
     <ion-item text-wrap>
         <ion-card>
 
@@ -10,7 +10,7 @@
                 <ion-avatar item-right>
                     <ion-row center text-center>
                         <ion-col>
-                            <button ion-fab mini class="topbutton delete" (click)="showItOnMap(crag)"><ion-icon name="navigate" color="secondary"></ion-icon></button>
+                            <button ion-fab class="topbutton navigate" (click)="showItOnMap(crag)"><ion-icon name="navigate" style="font-size:35px;" color="secondary"></ion-icon></button>
                         </ion-col>
                         <ion-col>
                             <p>Απόσταση</p>
@@ -43,10 +43,10 @@
             </ion-row>
         </ion-card>
     </ion-item>
-    <ion-item-options>
+    <!--<ion-item-options>
         <button ion-button color="favorite" (click)="addFavorite(slidingItem, crag)" >Favorite</button>
         <button ion-button color="gold" (click)="addYolo(slidingItem, crag)">Yolo</button>
         <button ion-button icon-only color="danger" (click)="removeFavorite(slidingItem, crag, 'Αφαίρεση Ενδιαφέρον')" *ngIf="segment==='favorites'">Αφαίρεση</button>
         <button ion-button icon-only color="danger" (click)="removeYolo(slidingItem, crag, 'Αφαίρεση Yolo')" *ngIf="segment==='yolo'">Αφαίρεση</button>
     </ion-item-options>
-</ion-item-sliding>
+</ion-item-sliding>-->

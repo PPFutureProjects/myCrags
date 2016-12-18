@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { CragsPage } from '../crags/crags';
 
 import { MapService } from '../../services/map.service';
-import { Crag, Route } from '../../shared/interfaces';
+import { ICrag, IRoute } from '../../shared/interfaces';
 
 @Component({
   selector: 'page-add-route',
@@ -12,9 +12,9 @@ import { Crag, Route } from '../../shared/interfaces';
 })
 export class AddRoutePage {
 
-  crag: Crag;
-  route: Route;
-  routes: Route[] = [];
+  crag: ICrag;
+  route: IRoute;
+  routes: IRoute[] = [];
   name: string;
   orderNo: string;
   routeNo: string;
@@ -35,7 +35,7 @@ export class AddRoutePage {
   addRoute() {
     var result;
     this.routes = this.crag.routes;
-    var newRoute: Route = {
+    var newRoute: IRoute = {
       //_id:'',
       name: this.name,
       cragId: this.crag._id,

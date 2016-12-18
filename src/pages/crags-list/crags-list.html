@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+        <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>Κοντινά Πεδία</ion-title>
   </ion-navbar>
 
@@ -18,7 +21,7 @@
       <h2>{{crag.name}}</h2>
       <p>Απόσταση : {{crag.distance}} km</p>
       <ion-avatar item-right>
-        <button ion-fab mini class="navigate" (click)="showItOnMap(crag)"><ion-icon name="navigate" color="secondary"></ion-icon></button>
+        <button ion-fab class="navigate" (click)="showItOnMap(crag)"><ion-icon style="font-size:35px;" name="navigate" color="secondary"></ion-icon></button>
       </ion-avatar>
     </ion-item>
   </ion-list>

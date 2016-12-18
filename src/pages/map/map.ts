@@ -1,12 +1,15 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { NavController, NavParams, PopoverController, AlertController, Platform } from 'ionic-angular';
+import {
+    NavController, NavParams, PopoverController,
+    AlertController, ModalController, Platform
+} from 'ionic-angular';
 import { MapsAPILoader } from 'angular2-google-maps/core';
 import { Geolocation } from 'ionic-native';
 
-import { CragDetailsPage, CragsListPage, AboutPopoverPage, WeatherPage } from '../../pages/pages';
+import { CragDetailsPage, CragsListPage, AboutPopoverPage, WeatherPage, FilterPage } from '../../pages/pages';
 import { MapService } from '../../services/map.service';
 import { ConnectivityService } from '../../services/connectivity.service';
-import { Crag } from '../../shared/interfaces'
+import { ICrag } from '../../shared/interfaces'
 
 declare var window: any;
 declare var google: any;
@@ -26,20 +29,22 @@ export class MapPage implements OnInit {
     }
     //properties
     rootPage: boolean = true;
-    currentPosition: Crag
+    currentPosition: ICrag
     totalCrags;
-    crag: Crag;
-    crags: Crag[];
+    crag: ICrag;
+    crags: ICrag[];
+    excludeCrags = [];
     firstTime: boolean = true;
     isDisplayOfflineMode: boolean = false;
     isClicked: boolean;
     opened: boolean = false;
 
-    constructor(public navController: NavController, public navParams: NavParams, public popoverController: PopoverController, public connectivityService: ConnectivityService,
-        public zone: NgZone, public alertController: AlertController, public mapsAPILoader: MapsAPILoader, private mapService: MapService, public platform: Platform) {
+    constructor(public navController: NavController, public navParams: NavParams, public modalController: ModalController,
+        public popoverController: PopoverController, public connectivityService: ConnectivityService,
+        public zone: NgZone, public alertController: AlertController, public mapsAPILoader: MapsAPILoader,
+        public mapService: MapService, public platform: Platform) {
 
         console.log('Constructing crags.....');
-        this.autocomplete();
 
         this.crag = this.navParams.get('crag');
         //request from crags page or crag-details page to 
@@ -50,6 +55,7 @@ export class MapPage implements OnInit {
         } else {
             //map page
             this.loadMap();
+            this.autocomplete();
             this.initializeCurrenPosition();
             this.loadCrags();
         }
@@ -59,13 +65,25 @@ export class MapPage implements OnInit {
     ngOnInit() {
         //this.initializeCurrenPosition();
         this.loadCrags();
-        this.autocomplete();
+        //this.autocomplete();
     }
 
-    refreshMap() {
-        this.loadCrags();
+    //filter Map page
+    presentFilter() {
+        let modal = this.modalController.create(FilterPage, this.excludeCrags);
+        modal.present();
+
+        modal.onDidDismiss((data: any[]) => {
+            if (data) {
+                this.excludeCrags = data;
+                this.updateMap();
+            }
+        });
     }
 
+    updateMap(){
+
+    }
     // networkConnectivity() {
     //     var that = this;
     //     setInterval(() => {
@@ -99,12 +117,12 @@ export class MapPage implements OnInit {
     //auto complete function
     autocomplete() {
         this.mapsAPILoader.load().then(() => {
-            let autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete').getElementsByTagName('input')[0], {});
+            let autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete').getElementsByTagName('input')[0], { types: ["address"] });
             google.maps.event.addListener(autocomplete, 'place_changed', () => {
                 let place = autocomplete.getPlace();
                 this.map.lat = place.geometry.location.lat();
                 this.map.lng = place.geometry.location.lng();
-                this.map.zoom = 12;
+                //this.map.zoom = 12;
                 console.log(place);
             });
         });
@@ -166,7 +184,7 @@ export class MapPage implements OnInit {
         });
     }
 
-    cragClicked(crag: Crag, index: number) {
+    cragClicked(crag: ICrag, index: number) {
         console.log('crag : ' + crag.name + ' index : ' + index);
     }
 
@@ -174,7 +192,7 @@ export class MapPage implements OnInit {
     cragDragEnd(crag, event) {
         console.log('cragEnd ', crag, event);
 
-        var updCrag: Crag = {
+        var updCrag: ICrag = {
             _id: crag._id,
             name: crag.name,
             lat: event.coords.lat,
