@@ -14,25 +14,46 @@ export class FilterPage {
   distinctCrags: any;
 
   constructor(public navParams: NavParams, public mapService: MapService, public mappingsService: MappingsService, public viewController: ViewController) {
-
+    var that=this;
     // passed in array of track names that should be excluded (unchecked)
     let excludeCrags = this.navParams.data;
 
     console.log('exCrags', excludeCrags);
 
     this.mapService.getCrags().subscribe((crags) => {
-      console.log('B-dc ', crags);
-      crags.map(crag => crag.placeType)
-        .filter((value, index, self) => self.indexOf(value) === index).forEach(crag => {
-          console.log('I-dc ', crags);
-          this.crags.push({
-            name: crag.placeType,
-            isChecked: (excludeCrags.indexOf(crag.placeType) === -1)
-          });
+      this.distinctCrags = crags;
+      let dc = this.distinctCrags.map(item => item.placeType)
+        .filter((value, index, self) => self.indexOf(value) === index);
+
+      dc.forEach(crag => {
+        excludeCrags.push({
+          name: crag.placeType,
+          isChecked: (excludeCrags.indexOf(crag.placeType) === -1)
         });
+      });
       console.log('ec ', excludeCrags);
-      console.log('A-dc ', crags);
+      console.log('dc ', dc);
     });
+    // let excludeCrags = this.navParams.data;
+    // var that=this;
+    // console.log('exCrags', excludeCrags);
+
+    // this.mapService.getCrags().subscribe((crags) => {
+    //   console.log('B-dc ', crags);
+    //   that.distinctCrags=crags;
+      
+    //   that.distinctCrags.map(crag => crag.placeType)
+    //     .filter((value, index, self) => self.indexOf(value) === index).forEach(value => {
+    //       console.log('I-dc ', crags);
+    //       that.distinctCrags.push({
+    //         name: value.placeType,
+    //         isChecked: (excludeCrags.indexOf(value.placeType) === -1)
+    //       });
+    //     });
+    //   console.log('ec ', excludeCrags);
+    //   console.log('DC ', this.distinctCrags);
+    //   console.log('A-dc ', crags);
+    // });
   }
 
   ionViewDidLoad() {

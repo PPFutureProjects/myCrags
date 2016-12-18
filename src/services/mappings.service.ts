@@ -10,7 +10,7 @@ export class MappingsService {
 
     constructor(public mapService: MapService) { }
 
-    getDistinctValues(array[]) {
+    getDistinctValues(array=[]) {
         return array.map(item => item)
             .filter((value, index, self) => self.indexOf(value) === index);
     }
