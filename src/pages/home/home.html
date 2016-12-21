@@ -1,19 +1,46 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+        <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>
-      Map App
+      Αναρρίχηση
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  
+<ion-content>
 
-  <button ion-button (click)="goToMap()">Go To Map</button> 
+  <ion-slides [options]="slideOptions">
+    <ion-slide>
+      <img src="assets/images/crags/Keratea-KakiaThalassa_1.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/crags/Parnitha-EPOSFylis_1.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/crags/panoalogopetra.jpg" />
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/images/crags/mikrivarsova4.jpg" />
+    </ion-slide>
+  </ion-slides>
 
+  <ion-toolbar color="primary">
+    <ion-title>Αναζήτηση</ion-title>
+  </ion-toolbar>
 
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearchInput()" [formControl]="searchControl" placeholder="αναζήτηση πεδίων ..."></ion-searchbar>
 
-  <p>
-    
-  </p>
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <ion-card tappable (click)="openRoutesList(crag.routes)" *ngFor="let crag of crags">
+    <div *ngIf="crag.placeType==='crag'">
+      <img [src]="crag.imagePath" />
+      <div class="card-title">{{crag.name}}</div>
+    </div>
+  </ion-card>
+
 </ion-content>

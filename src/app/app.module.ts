@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage, MapPage, CragsPage, AddCragPage, CragDetailsPage, CragsListPage, ClimbsPage, FilterPage,
+import { HomePage, MapPage, CragsPage, AddCragPage, CragDetailsPage, CragsListPage, RoutesListPage, ClimbsPage, FilterPage,
         TabsPage, AddClimbPage, AboutPopoverPage, AddRoutePage, WeatherPage, WeatherSettingsPage } from '../pages/pages';
 
 import { CragComponent } from '../shared/components/crag/crag-component';
@@ -24,6 +24,7 @@ import { AgmCoreModule} from 'angular2-google-maps/core';
     CragDetailsPage,
     CragsListPage,
     ClimbsPage,
+    RoutesListPage,
     TabsPage,
     AddClimbPage,
     AboutPopoverPage,
@@ -46,6 +47,7 @@ import { AgmCoreModule} from 'angular2-google-maps/core';
     AddCragPage,
     CragDetailsPage,
     CragsListPage,
+    RoutesListPage,
     ClimbsPage,
     TabsPage,
     AddClimbPage,

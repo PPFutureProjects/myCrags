@@ -3,8 +3,8 @@ import { Platform, Nav, MenuController } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
 import {
-  TabsPage, AddClimbPage, AddCragPage, CragsListPage,
-  AddRoutePage, MapPage, CragsPage, ClimbsPage
+  HomePage, AddClimbPage, AddCragPage, CragsListPage,
+  AddRoutePage, MapPage, CragsPage, ClimbsPage //TabsPage
 } from '../pages/pages';
 import { IPage } from '../shared/interfaces';
 
@@ -15,11 +15,11 @@ import { IPage } from '../shared/interfaces';
 export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
-  rootPage = MapPage;
+  rootPage = HomePage;
 
   appPages: IPage[] = [
-    //{title:'Χάρτης', component: TabsPage, icon:'globe'},
-    { title: 'Ημερολόγιο', component: ClimbsPage, icon: 'bookmarks' },
+    { title:'Αρχική', component: HomePage, index: 4, icon:'Home'},
+    { title: 'Ημερολόγιο', component: ClimbsPage, index: 3, icon: 'bookmarks' },
     { title: 'Κοντά μου', component: CragsListPage, index: 1, icon: 'list' },
     //{ title: 'Forum', component: TabsPage, index: 2, icon: 'chatboxes' }
   ];

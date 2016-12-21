@@ -8,6 +8,7 @@ export * from './add-crag/add-crag';
 export * from './add-route/add-route';
 export * from './crag-details/crag-details';
 export * from './crags-list/crags-list';
+export * from './routes-list/routes-list';
 export * from './filter/filter';
 export * from './weather/weather';
 export * from './weather-settings/weather-settings';

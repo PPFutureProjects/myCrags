@@ -9,9 +9,9 @@ export class MapService {
     apiKey: string;
     cragsUrl: string;
     routesUrl: string;
-    queryUrl:string='?q={';
-    field:string='"placeType"';
-    collection:string='"crag"';
+    queryUrl: string = '?q={';
+    field: string = '"placeType"';
+    collection: string = '"crag"';
 
     constructor(private http: Http) {
         this.apiKey = 'UT8zWAvAS-I7BFIqMLYZa3GoTKse0uXt';
@@ -19,7 +19,7 @@ export class MapService {
         this.routesUrl = 'https://api.mlab.com/api/1/databases/meanmap/collections/routes';
         console.log('Service Connected....');
     }
-    
+
     //get all crags
     getCrags() {
         return this.http.get(this.cragsUrl + '?apiKey=' + this.apiKey)
@@ -30,8 +30,7 @@ export class MapService {
     //https://api.mlab.com/api/1/databases/my-db/collections/my-coll?q={"active": true}&apiKey=myAPIKey
     getCragsDistinct() {
         //return this.http.get('https://api.mlab.com/api/1/databases/meanmap/collections/crags?s={\"distinct\":'+this.collection+','+'\"key\":'+this.field+'}&apiKey='+this.apiKey)
-                return this.http.get('https://api.mlab.com/api/1/databases/meanmap/collections/crags?f={\"placeType\":'+1+',\"_id\":'+0+'}&apiKey='+this.apiKey)
-
+        return this.http.get('https://api.mlab.com/api/1/databases/meanmap/collections/crags?f={\"placeType\":' + 1 + ',\"_id\":' + 0 + '}&apiKey=' + this.apiKey)
             .map(res => res.json());
     }
 
@@ -71,5 +70,16 @@ export class MapService {
         headers.append('Content-Type', 'application/json');
         return this.http.put(this.cragsUrl + '/' + route.cragId.$oid + '?apiKey=' + this.apiKey, JSON.stringify({ $push: { "routes": route } }), { headers: headers })
             .map(res => res.json());
+    }
+
+    filterCrags(searchTerm) {
+        return new Promise(resolve => {
+            this.getCrags().subscribe((data) => {
+                let filteredCrags = data.filter((crag) => {
+                return crag.name.toLowerCase().indexOf(searchTerm.toLowerCase())>-1;
+                });
+                resolve(filteredCrags);
+            });
+        });
     }
 }

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-
 import { NavController, ItemSliding } from 'ionic-angular';
 
 import { MapService } from '../../services/map.service';
 import { MappingsService } from '../../services/mappings.service';
 
-import { CragDetailsPage } from '../../pages/crag-details/crag-details';
-import { AddCragPage } from '../../pages/add-crag/add-crag';
+import { AddCragPage, CragDetailsPage } from '../../pages/pages';
 import { ICrag, IRoute } from '../../shared/interfaces'
 
 
