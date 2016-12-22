@@ -1,11 +1,11 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import {
     NavController, NavParams, PopoverController,
     AlertController, ModalController, Platform
 } from 'ionic-angular';
 import { MapsAPILoader } from 'angular2-google-maps/core';
 import { Geolocation } from 'ionic-native';
-
+import { FormControl } from '@angular/forms';
 import { CragDetailsPage, CragsListPage, AboutPopoverPage, WeatherPage, FilterPage } from '../../pages/pages';
 import { MapService } from '../../services/map.service';
 import { ConnectivityService } from '../../services/connectivity.service';
@@ -38,12 +38,16 @@ export class MapPage implements OnInit {
     isDisplayOfflineMode: boolean = false;
     isClicked: boolean;
     opened: boolean = false;
+    searchControl: FormControl;
+    @ViewChild("search")
+    public searchElementRef: ElementRef;
+
 
     constructor(public navController: NavController, public navParams: NavParams, public modalController: ModalController,
         public popoverController: PopoverController, public connectivityService: ConnectivityService,
         public zone: NgZone, public alertController: AlertController, public mapsAPILoader: MapsAPILoader,
         public mapService: MapService, public platform: Platform) {
-
+        this.searchControl = new FormControl();
         console.log('Constructing crags.....');
 
         this.crag = this.navParams.get('crag');
@@ -81,7 +85,7 @@ export class MapPage implements OnInit {
         });
     }
 
-    updateMap(){
+    updateMap() {
 
     }
     // networkConnectivity() {
@@ -126,6 +130,23 @@ export class MapPage implements OnInit {
                 console.log(place);
             });
         });
+        // this.mapsAPILoader.load().then(() => {
+        //     let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        //         types: ["address"]
+        //     });
+        //     autocomplete.addListener("place_changed", () => {
+        //         this.zone.run(() => {
+        //             //get the place result
+        //             let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+        //             //set latitude, longitude and zoom
+        //             this.map.lat = place.geometry.location.lat();
+        //             this.map.lng = place.geometry.location.lng();
+        //             //this.map.zoom = 12;
+        //             console.log(place);
+        //         });
+        //     });
+        // });
     }
 
     // displayOffline() {

@@ -18,7 +18,7 @@ export class MyApp {
   rootPage = HomePage;
 
   appPages: IPage[] = [
-    { title:'Αρχική', component: HomePage, index: 4, icon:'Home'},
+    { title:'Αρχική', component: HomePage, index: 4, icon:'home'},
     { title: 'Ημερολόγιο', component: ClimbsPage, index: 3, icon: 'bookmarks' },
     { title: 'Κοντά μου', component: CragsListPage, index: 1, icon: 'list' },
     //{ title: 'Forum', component: TabsPage, index: 2, icon: 'chatboxes' }

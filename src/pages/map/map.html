@@ -25,6 +25,7 @@
   </ion-fab>
   <ion-item no-lines>
     <ion-input color="primary" id="autocomplete" type="text" name="title" placeholder="Αναζητήστε περιοχή...."></ion-input>
+    <!--<input color="primary" id="autocomplete" type="text" name="title" [formControl]="searchControl" #search placeholder="Αναζητήστε περιοχή....">-->
   </ion-item>
   <sebm-google-map id="map" [mapTypeControl]="true" [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom">
     (mapClick)="mapClicked($event)"
