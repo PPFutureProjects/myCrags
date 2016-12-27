@@ -4,7 +4,7 @@ import { StatusBar } from 'ionic-native';
 
 import {
   HomePage, AddClimbPage, AddCragPage, CragsListPage,
-  AddRoutePage, MapPage, CragsPage, ClimbsPage //TabsPage
+  CragsMapPage, AddRoutePage, MapPage, CragsPage, ClimbsPage //TabsPage
 } from '../pages/pages';
 import { IPage } from '../shared/interfaces';
 
@@ -26,6 +26,7 @@ export class MyApp {
 
   menuPages: IPage[] = [
     { title: 'Χάρτης', component: MapPage, icon: 'globe' },
+    { title: 'Google', component: CragsMapPage, icon: 'globe' },
     { title: 'Πεδία', component: CragsPage, index: 2, icon: 'podium' }
   ];
 

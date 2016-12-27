@@ -13,6 +13,7 @@ import { ICrag, IRoute } from '../../shared/interfaces';
 })
 
 export class AddCragPage {
+    cragInfo:any;
     cragName: string;
     cragLat
     cragLng
@@ -61,6 +62,13 @@ export class AddCragPage {
             this.cragIcon = this.cragMarker;
         }
 
+        this.cragInfo=this.mapService.getCragDetails(this.cragLat,this.cragLng)
+            .subscribe((data)=>{
+                this.cragInfo=data;
+                console.log('cInfo', this.cragInfo);
+                console.log('cInfo', data.results["1"].address_components["5"])
+            })
+
         var newCrag:ICrag = {
             name: this.cragName,
             lat: parseFloat(this.cragLat),
@@ -88,8 +96,6 @@ export class AddCragPage {
             this.cragName = '';
             this.cragLat = '';
             this.cragLng = '';
-            //this.cragDraggable = '';
-            //this.cragImagePath='';
             this.loadCrags();
             this.navController.setRoot(CragsPage);
         },

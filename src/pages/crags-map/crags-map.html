@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Χάρτης Πεδίων</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div #pleaseConnect id="please-connect">
+    <p>Please connect to the Internet...</p>
+  </div>
+  <div #map id="map">
+    <ion-fab left bottom>
+    <button ion-fab><ion-icon name="arrow-dropup"></ion-icon></button>
+    <ion-fab-list transparent side="top">
+      <button class="navigate" ion-fab class="navigate" (click)="goToCurrentPosition()"><ion-icon name="navigate" color="secondary"></ion-icon></button>
+      <button class="calculate" ion-fab (click)="showNearbyCrags()"><ion-icon name="list" color="danger"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+  </div>
+</ion-content>

@@ -1,5 +1,6 @@
 export * from './home/home';
 export * from './map/map';
+export * from './crags-map/crags-map';
 export * from './tabs/tabs';
 export * from './crags/crags';
 export * from './climbs/climbs';

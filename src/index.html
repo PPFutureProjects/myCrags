@@ -10,7 +10,9 @@
   <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
   <link rel="manifest" href="assets/manifest.json">
   <meta name="theme-color" content="#4e8ef7">
-
+  <meta http-equiv="Content-Security-Policy" content="font-src * 'self' data:;
+  img-src * data:; default-src gap://ready file://* *; script-src 'self'
+  'unsafe-inline' 'unsafe-eval' * ; style-src 'self' 'unsafe-inline' *">
   <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {

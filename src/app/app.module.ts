@@ -1,28 +1,32 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage, MapPage, CragsPage, AddCragPage, CragDetailsPage, CragsListPage, RoutesListPage, ClimbsPage, FilterPage,
-        TabsPage, AddClimbPage, AboutPopoverPage, AddRoutePage, WeatherPage, WeatherSettingsPage } from '../pages/pages';
+import {
+  HomePage, MapPage, CragsPage, AddCragPage, CragDetailsPage, CragsListPage, RoutesListPage, ClimbsPage, FilterPage,
+  CragsMapPage, TabsPage, AddClimbPage, AboutPopoverPage, AddRoutePage, WeatherPage, WeatherSettingsPage
+} from '../pages/pages';
 
 import { CragComponent } from '../shared/components/crag/crag-component';
 
-import {MapService} from '../services/map.service';
-import {MappingsService} from '../services/mappings.service';
-import {WeatherService} from '../services/weather.service';
-import {ConnectivityService} from '../services/connectivity.service';
+import { MapService } from '../services/map.service';
+import { MappingsService } from '../services/mappings.service';
+import { WeatherService } from '../services/weather.service';
+import { ConnectivityService } from '../services/connectivity.service';
+import { GoogleMaps } from '../services/google-maps';
 
 import { GoogleMapsAPIWrapper } from 'angular2-google-maps/core/services/google-maps-api-wrapper';
-import { AgmCoreModule} from 'angular2-google-maps/core';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage, 
+    HomePage,
     MapPage,
     CragsPage,
     AddCragPage,
     CragDetailsPage,
     CragsListPage,
+    CragsMapPage,
     ClimbsPage,
     RoutesListPage,
     TabsPage,
@@ -36,7 +40,7 @@ import { AgmCoreModule} from 'angular2-google-maps/core';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBbsOlMryAHu2ESwHHSwrDBIUU7fiENNoM', libraries: ["places"]})
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyBbsOlMryAHu2ESwHHSwrDBIUU7fiENNoM', libraries: ["places"] })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,6 +51,7 @@ import { AgmCoreModule} from 'angular2-google-maps/core';
     AddCragPage,
     CragDetailsPage,
     CragsListPage,
+    CragsMapPage,
     RoutesListPage,
     ClimbsPage,
     TabsPage,
@@ -55,14 +60,15 @@ import { AgmCoreModule} from 'angular2-google-maps/core';
     AddRoutePage,
     FilterPage,
     WeatherPage,
-    WeatherSettingsPage 
+    WeatherSettingsPage
   ],
   providers: [
     MapService,
     MappingsService,
     WeatherService,
     ConnectivityService,
-    GoogleMapsAPIWrapper
+    GoogleMapsAPIWrapper,
+    GoogleMaps
   ]
 })
-export class AppModule {}
+export class AppModule { }

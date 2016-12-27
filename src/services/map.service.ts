@@ -9,7 +9,9 @@ export class MapService {
     apiKey: string;
     cragsUrl: string;
     routesUrl: string;
-    queryUrl: string = '?q={';
+    googleUrl:string;
+    geocodeUrl:string;
+    googleKey:string;
     field: string = '"placeType"';
     collection: string = '"crag"';
 
@@ -17,6 +19,8 @@ export class MapService {
         this.apiKey = 'UT8zWAvAS-I7BFIqMLYZa3GoTKse0uXt';
         this.cragsUrl = 'https://api.mlab.com/api/1/databases/meanmap/collections/crags';
         this.routesUrl = 'https://api.mlab.com/api/1/databases/meanmap/collections/routes';
+        this.geocodeUrl='https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+        this.googleKey='AIzaSyCVg-aolI3jp62M-r_-O8C1D44zoQfnW6g';
         console.log('Service Connected....');
     }
 
@@ -26,12 +30,10 @@ export class MapService {
             .map(res => res.json());
     }
 
-    //get all crags
-    //https://api.mlab.com/api/1/databases/my-db/collections/my-coll?q={"active": true}&apiKey=myAPIKey
-    getCragsDistinct() {
-        //return this.http.get('https://api.mlab.com/api/1/databases/meanmap/collections/crags?s={\"distinct\":'+this.collection+','+'\"key\":'+this.field+'}&apiKey='+this.apiKey)
-        return this.http.get('https://api.mlab.com/api/1/databases/meanmap/collections/crags?f={\"placeType\":' + 1 + ',\"_id\":' + 0 + '}&apiKey=' + this.apiKey)
-            .map(res => res.json());
+
+    getCragDetails(lat,lng){
+        return this.http.get(this.geocodeUrl+lat+','+lng+'&key='+this.googleKey)
+            .map(res=>res.json());
     }
 
     //add new crag

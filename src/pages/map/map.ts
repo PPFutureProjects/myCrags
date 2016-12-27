@@ -28,6 +28,7 @@ export class MapPage implements OnInit {
         lng: 23.7213821
     }
     //properties
+    area: any;
     rootPage: boolean = true;
     currentPosition: ICrag
     totalCrags;
@@ -47,9 +48,9 @@ export class MapPage implements OnInit {
         public popoverController: PopoverController, public connectivityService: ConnectivityService,
         public zone: NgZone, public alertController: AlertController, public mapsAPILoader: MapsAPILoader,
         public mapService: MapService, public platform: Platform) {
+            
         this.searchControl = new FormControl();
         console.log('Constructing crags.....');
-
         this.crag = this.navParams.get('crag');
         //request from crags page or crag-details page to 
         //focus on specific crag
@@ -67,6 +68,7 @@ export class MapPage implements OnInit {
     }
 
     ngOnInit() {
+        
         //this.initializeCurrenPosition();
         this.loadCrags();
         //this.autocomplete();
@@ -80,14 +82,11 @@ export class MapPage implements OnInit {
         modal.onDidDismiss((data: any[]) => {
             if (data) {
                 this.excludeCrags = data;
-                this.updateMap();
+                //this.updateMap();
             }
         });
     }
 
-    updateMap() {
-
-    }
     // networkConnectivity() {
     //     var that = this;
     //     setInterval(() => {
@@ -104,6 +103,7 @@ export class MapPage implements OnInit {
     //         }
     //     }, 2000);
     // }
+
 
     //load map centered in current position
     loadMap() {
@@ -127,7 +127,7 @@ export class MapPage implements OnInit {
                 this.map.lat = place.geometry.location.lat();
                 this.map.lng = place.geometry.location.lng();
                 //this.map.zoom = 12;
-                console.log(place);
+                console.log('place ',place);
             });
         });
         // this.mapsAPILoader.load().then(() => {
