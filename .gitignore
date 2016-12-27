@@ -11,7 +11,7 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
-
+src/assets/images/DTO_images/**
 .idea/
 .sass-cache/
 .tmp/
