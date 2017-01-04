@@ -67,7 +67,10 @@ export class AddCragPage {
                 this.cragInfo=data;
                 console.log('cInfo', this.cragInfo);
                 console.log('cInfo', data.results["1"].address_components["5"])
-            })
+        })
+
+        //let geocoder = new google.maps.Geocoder();
+
 
         var newCrag:ICrag = {
             name: this.cragName,
@@ -102,6 +105,30 @@ export class AddCragPage {
             err => console.log(err),
             () => console.log('OK'))
     }
+
+    //edit crag button
+    editCrag(crag){
+        var updCrag: ICrag = {
+            _id: crag._id,
+            name: crag.name,
+            lat: crag.lat,
+            lng: crag.lng,
+            imagePath: crag.imagePath,
+            draggable: crag.draggable,
+            placeType: crag.imagePath,
+            icon: crag.icon,
+            routes: crag.routes
+        };
+        console.log('C ', crag);
+        console.log('UC ', updCrag);
+
+        this.mapService.updateCrag(updCrag)
+            .subscribe(data => {
+            });
+        console.log('UC ', updCrag);
+    }
+
+
 
     loadCrags() {
         this.mapService.getCrags()

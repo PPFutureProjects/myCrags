@@ -25,8 +25,11 @@
         <ion-select [(ngModel)]="grade" name="grade" cancelText="Nah" okText="Okay!">
           <ion-option value="5">5</ion-option>
           <ion-option value="5a">5a</ion-option>
+          <ion-option value="5a+">5a+</ion-option>
           <ion-option value="5b">5b</ion-option>
+          <ion-option value="5b+">5b+</ion-option>
           <ion-option value="5c">5c</ion-option>
+          <ion-option value="5c+">5c+</ion-option>
           <ion-option value="6a">6a</ion-option>
           <ion-option value="6a+">6a+</ion-option>
           <ion-option value="6b">6b</ion-option>
@@ -68,6 +71,10 @@
       <ion-item>
         <ion-label stacked>Σετάκια</ion-label>
         <ion-input [(ngModel)]="qDraws" name="qDraws" type="number"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Πληροφορίες</ion-label>
+        <ion-textarea type="text" name="info" [(ngModel)]="info"></ion-textarea>
       </ion-item>
       <ion-item>
         <button ion-button type="submit" block>Προσθήκη Πεδίου</button>

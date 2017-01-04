@@ -36,7 +36,7 @@
     <ion-spinner></ion-spinner>
   </div>
 
-  <ion-card tappable (click)="openRoutesList(crag.routes)" *ngFor="let crag of crags">
+  <ion-card tappable (click)="openCragDetailsPage(crag)" *ngFor="let crag of crags">
     <div *ngIf="crag.placeType==='crag'">
       <img [src]="crag.imagePath" />
       <div class="card-title">{{crag.name}}</div>

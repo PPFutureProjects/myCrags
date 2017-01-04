@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NavController } from 'ionic-angular';
-import { RoutesListPage } from '../../pages/pages';
+import { RoutesListPage, CragDetailsPage } from '../../pages/pages';
 import { MapService } from '../../services/map.service';
 import 'rxjs/add/operator/debounceTime';
 
@@ -54,9 +54,9 @@ export class HomePage {
       });
   }
 
-  openRoutesListPage(routes) {
-    this.navController.push(RoutesListPage,
-      { routes: routes })
+  openCragDetailsPage(crag) {
+    this.navController.push(CragDetailsPage,
+      { crag: crag })
   }
 
 }

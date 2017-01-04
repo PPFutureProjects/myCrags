@@ -22,6 +22,7 @@ export class AddRoutePage {
   heigth: string;
   climbType: string;
   qDraws: number;
+  info:string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams, public mapService: MapService) {
@@ -45,6 +46,7 @@ export class AddRoutePage {
       heigth: this.heigth,
       climbType: this.climbType,
       qDraws: this.qDraws,
+      info:this.info
     };
     var that = this;
     result = this.mapService.addRoute(newRoute)
@@ -57,7 +59,8 @@ export class AddRoutePage {
           grade: this.grade,
           heigth: this.heigth,
           climbType: this.climbType,
-          qDraws: this.qDraws
+          qDraws: this.qDraws,
+          info:this.info
         }
         that.crag.routes.push(newRoute);
         this.name = '';
@@ -67,6 +70,7 @@ export class AddRoutePage {
         this.heigth = '';
         this.climbType = '';
         this.qDraws = null;
+        this.info="";
 
         this.navCtrl.pop();
         console.log(newRoute);

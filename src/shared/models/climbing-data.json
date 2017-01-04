@@ -1,0 +1,217 @@
+{
+    "countries": [
+        {
+            "name": "Greece",
+            "states:": [
+                {
+                    "name": "Attika",
+                    "crags": [
+                        {
+                            "name": "Markopoulo",
+                            "info":"",
+                            "facing":"NW",
+                            "image":"",
+                            "markers": [
+                                {   "type":"crag",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"parking",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"camping_area",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                }
+                            ],
+                            "sectors": [
+                                {
+                                    "name": "main",
+                                    "routes": [
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"",
+                                            "pitch":"single",
+                                            "makers":""
+                                        },
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"",
+                                            "pitch":"single",
+                                            "makers":""
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                         {
+                            "name": "Iera Odos",
+                            "info":"",
+                            "facing":"NW",
+                            "image":"",
+                            "markers": [
+                                {   "type":"crag",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"parking",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"camping_area",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                }
+                            ],
+                            "sectors": [
+                                {
+                                    "name": "main",
+                                    "routes": [
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"",
+                                            "pitch":"single",
+                                            "makers":""
+                                        },
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"",
+                                            "pitch":"single",
+                                            "makers":""
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Argolida",
+                    "crags": [
+                        {
+                            "name": "Neraki",
+                            "info":"",
+                            "facing":"NW",
+                            "image":"",
+                            "markers": [
+                                {   "type":"crag",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"parking",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"camping_area",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                }
+                            ],
+                            "sectors": [
+                                {
+                                    "name": "main",
+                                    "routes": [
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"sport",
+                                            "pitch":"single",
+                                            "makers":""
+                                        },
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"",
+                                            "pitch":"single",
+                                            "makers":""
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                         {
+                            "name": "Anatoli",
+                            "info":"",
+                            "facing":"NW",
+                            "image":"",
+                            "markers": [
+                                {   "type":"crag",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"parking",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                },
+                                {   "type":"camping_area",
+                                    "lat": "",
+                                    "lng": "",
+                                    "icon": ""
+                                }
+                            ],
+                            "sectors": [
+                                {
+                                    "name": "main",
+                                    "routes": [
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"",
+                                            "makers":""
+                                        },
+                                        {
+                                            "name": "",
+                                            "no": "",
+                                            "grade": "",
+                                            "heigth":"",
+                                            "qDraws":"",
+                                            "type":"",
+                                            "makers":""
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

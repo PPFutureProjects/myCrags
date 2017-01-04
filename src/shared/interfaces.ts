@@ -20,6 +20,7 @@ export interface IRoute {
     heigth:string;
     climbType:string; //sport, trad, mixed....
     qDraws:number;
+    info:string;
 }
 
 export interface IPage {
