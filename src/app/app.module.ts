@@ -7,6 +7,7 @@ import {
 } from '../pages/pages';
 
 import { CragComponent } from '../shared/components/crag/crag-component';
+import { EffectHeader } from '../shared/components/effect-header/effect-header';
 
 import { MapService } from '../services/map.service';
 import { MappingsService } from '../services/mappings.service';
@@ -34,6 +35,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     AboutPopoverPage,
     AddRoutePage,
     CragComponent,
+    EffectHeader,
     FilterPage,
     WeatherPage,
     WeatherSettingsPage

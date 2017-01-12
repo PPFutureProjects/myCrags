@@ -14,8 +14,8 @@ export class FilterPage {
   distinctCrags: any;
 
   constructor(public navParams: NavParams, public mapService: MapService, public mappingsService: MappingsService, public viewController: ViewController) {
-    var that=this;
-    // passed in array of track names that should be excluded (unchecked)
+
+    // passed in array of place types that should be excluded (unchecked)
     let excludeCrags = this.navParams.data;
 
     console.log('exCrags', excludeCrags);

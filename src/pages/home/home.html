@@ -1,46 +1,46 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar>
+        <button ion-button menuToggle>
         <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-title>
-      Αναρρίχηση
-    </ion-title>
-  </ion-navbar>
+        <ion-title>
+            Αναρρίχηση
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-slides [options]="slideOptions">
-    <ion-slide>
-      <img src="assets/images/crags/attiki/epos/Parnitha-EPOSFylis_1.jpg" />
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/images/crags/attiki/alogopetra/panoalogopetra1.jpg" />
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/images/crags/attiki/korakofolia/korakofolia-kentriko-1.jpg" />
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/images/crags/attiki/markopoulo/merenda-1.jpg" />
-    </ion-slide>
-  </ion-slides>
+    <ion-slides [options]="slideOptions">
+        <ion-slide>
+            <img src="assets/images/crags/attiki/epos/Parnitha-EPOSFylis_1.jpg" />
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/images/crags/attiki/alogopetra/panoalogopetra1.jpg" />
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/images/crags/attiki/korakofolia/korakofolia-kentriko-1.jpg" />
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/images/crags/attiki/markopoulo/merenda-1.jpg" />
+        </ion-slide>
+    </ion-slides>
 
-  <ion-toolbar color="primary" text-left>
-    <ion-title>Αναζήτηση</ion-title>
-  </ion-toolbar>
+    <!--<ion-toolbar color="primary" text-left>
+        <ion-title text-left>Αναζήτηση</ion-title>
+    </ion-toolbar>-->
 
-  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearchInput()" [formControl]="searchControl" placeholder="αναζήτηση πεδίων ..."></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearchInput()" [formControl]="searchControl" placeholder="αναζήτηση πεδίων ..."></ion-searchbar>
 
-  <div *ngIf="searching" class="spinner-container">
-    <ion-spinner></ion-spinner>
-  </div>
-
-  <ion-card tappable (click)="openCragDetailsPage(crag)" *ngFor="let crag of crags">
-    <div *ngIf="crag.placeType==='crag'">
-      <img [src]="crag.imagePath" />
-      <div class="card-title">{{crag.name}}</div>
+    <div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
     </div>
-  </ion-card>
+
+    <ion-card tappable (click)="openCragDetailsPage(crag)" *ngFor="let crag of crags">
+        <div *ngIf="crag.placeType==='crag'">
+            <img [src]="crag.imagePath" />
+            <div class="card-title">{{crag.name}}</div>
+        </div>
+    </ion-card>
 
 </ion-content>

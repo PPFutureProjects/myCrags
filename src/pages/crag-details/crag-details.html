@@ -1,15 +1,15 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      {{crag.name}}
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>
+            {{crag.name}}
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-card>
-    <img [src]="crag.imagePath"/>
-    <ion-card-content>
-           <ion-row class="left-border-primary" center>
+    <ion-card>
+        <img [src]="crag.imagePath" />
+        <ion-card-content>
+            <ion-row class="left-border-primary" center>
                 <ion-col>
                     <button color="primary" clear small (click)="viewCragRoutes(crag._id)">
                     <ion-icon name="quote"></ion-icon>
@@ -25,33 +25,56 @@
                             <button ion-fab mini (click)="weatherForecast(crag)"><ion-icon name='cloudy-night' color="gold"></ion-icon></button>
                         </ion-col>
                         <ion-col width-33>
-                            <button ion-fab mini class="topbutton navigate" (click)="showItOnMap(crag)"><ion-icon name="navigate" style="font-size:35px;" color="secondary"></ion-icon></button>
+                            <button ion-fab mini class="topbutton navigate" (click)="showItOnMap(crag)"><ion-icon name="navigate" color="secondary"></ion-icon></button>
                         </ion-col>
                     </ion-row>
                 </ion-col>
             </ion-row>
-    </ion-card-content>
-  </ion-card>
-  <ion-list>
-  </ion-list>
-  <ion-list no-lines>
-    <ion-toolbar>
-       <ion-title color="primary" [hidden]="crag.routes.length == 0">Διαδρομές</ion-title>
-      <ion-buttons end>
-        <button ion-button icon-only (click)=addRouteToCrag(crag)><ion-icon name="add-circle"></ion-icon></button>
-      </ion-buttons>
-      <ion-list-header [hidden]="crag.routes.length > 0">
-        Δεν υπαρχουν καταχωρημενες διαδρομες.
-      </ion-list-header>
-    </ion-toolbar>
-  </ion-list>
-   <ion-list no-lines>
+        </ion-card-content>
+    </ion-card>
+    <ion-list>
+    </ion-list>
+    <ion-list no-lines>
+        <ion-toolbar>
+            <ion-title color="primary" [hidden]="crag.routes.length == 0">Διαδρομές</ion-title>
+            <ion-buttons end>
+                <button ion-button icon-only (click)=addRouteToCrag(crag)><ion-icon name="add-circle"></ion-icon></button>
+            </ion-buttons>
+            <ion-list-header [hidden]="crag.routes.length > 0">
+                Δεν υπαρχουν καταχωρημενες διαδρομες.
+            </ion-list-header>
+        </ion-toolbar>
+    </ion-list>
+    <ion-list no-lines>
         <ion-item-sliding *ngFor="let route of crag.routes">
-          <button ion-item (click)="showRouteDetails(route)">{{route.routeNo}} - {{route.name}} (<span class="routeInfo">{{route.grade}}</span>)</button>
-          <ion-item-options>
-            <button ion-button icon-only color="light" (click)="makeItFavorite()"><ion-icon name="heart">Αγαπημένη</ion-icon></button>
-            <button ion-button icon-only color="light" (click)="makeItYolo()"><ion-icon name="flame">Yolo</ion-icon></button>
-          </ion-item-options>
+            <button ion-item (click)="showRouteDetails(route)">{{route.routeNo}} - {{route.name}} (<span class="routeInfo">{{route.grade}}</span>)</button>
+            <ion-item-options>
+                <button ion-button icon-only color="light" (click)="editRoute()"><ion-icon name="create">Επεξεργασία</ion-icon></button>
+            </ion-item-options>
         </ion-item-sliding>
-      </ion-list>
+    </ion-list>
 </ion-content>
+<!--<ion-content effect-header>
+
+    <div class="header-image"></div>
+
+    <div class="main-content">
+        <h2>Parallax Header</h2>
+
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+</ion-content>-->
