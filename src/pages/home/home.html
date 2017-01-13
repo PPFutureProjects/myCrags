@@ -30,7 +30,7 @@
         <ion-title text-left>Αναζήτηση</ion-title>
     </ion-toolbar>-->
 
-    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearchInput()" [formControl]="searchControl" placeholder="αναζήτηση πεδίων ..."></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" color="primary" (ionInput)="onSearchInput()" [formControl]="searchControl" placeholder="αναζήτηση πεδίων ..."></ion-searchbar>
 
     <div *ngIf="searching" class="spinner-container">
         <ion-spinner></ion-spinner>
