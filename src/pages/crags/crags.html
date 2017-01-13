@@ -1,34 +1,30 @@
 <ion-header>
-  <!--<ion-title>Αναρριχητικά πεδία</ion-title>-->
-  <ion-navbar no-border-bottom color="primary">
-    <button ion-button menuToggle>
+    <!--<ion-title>Αναρριχητικά πεδία</ion-title>-->
+    <ion-navbar no-border-bottom color="primary">
+        <button ion-button menuToggle>
         <ion-icon name='menu'></ion-icon>
     </button>
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateCrags()">
-      <ion-segment-button value="all">
-        Όλα
-      </ion-segment-button>
-      <ion-segment-button value="favorites">
-        Ενδιαφέροντα
-      </ion-segment-button>
-      <ion-segment-button value="yolo">
-        Yolo
-      </ion-segment-button>
-    </ion-segment>
-    <ion-buttons end>
-      <button ion-button icon-only (click)=addCrag()><ion-icon name="add-circle"></ion-icon></button>
-      <!--<button ion-button icon-only (click)="presentFilter()">
-        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
-      </button>-->
-    </ion-buttons>
-  </ion-navbar>
-  <ion-toolbar no-border-top>
-    <ion-searchbar color="primary" [(ngModel)]="queryText" (ionInput)="searchCrags($event)" placeholder="Αναζητήστε κάποιο πεδίο.....">
-    </ion-searchbar>
-  </ion-toolbar>
+        <ion-segment [(ngModel)]="segment" (ionChange)="updateCrags()">
+            <ion-segment-button value="all">
+                Όλα
+            </ion-segment-button>
+            <ion-segment-button value="crags">
+                Πεδία
+            </ion-segment-button>
+            <ion-segment-button value="gyms">
+                Γυμναστήρια
+            </ion-segment-button>
+        </ion-segment>
+        <ion-buttons end>
+            <button ion-button icon-only (click)=addCrag()><ion-icon name="add-circle"></ion-icon></button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar no-border-top>
+        <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="onSearchInput()" [formControl]="searchControl" placeholder="αναζήτηση πεδίων ..."></ion-searchbar>
+    </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list no-lines>
-      <crag-card *ngFor="let crag of crags" [crag]="crag" [hidden]="crag.hide" (onViewCragRoutes)="viewCragRoutes($event)" (onGetWeatherReport)="getWeatherReport()"></crag-card>
-  </ion-list>
+    <ion-list no-lines>
+        <crag-card *ngFor="let crag of crags" [crag]="crag" [hidden]="crag.hide" (onViewCragRoutes)="viewCragRoutes($event)" (onGetWeatherReport)="getWeatherReport()"></crag-card>
+    </ion-list>
 </ion-content>

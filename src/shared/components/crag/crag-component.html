@@ -1,49 +1,49 @@
 <!--<ion-item-sliding>-->
-    <ion-item text-wrap>
-        <ion-card>
+<ion-item text-wrap *ngIf="crag.placeType==='crag'">
+    <ion-card>
 
-            <ion-item>
-                <ion-thumbnail item-left>
-                    <img [src]="crag.imagePath">
-                </ion-thumbnail>
-                {{crag.name}}
-                <ion-avatar item-right>
-                    <ion-row center text-center>
-                        <ion-col>
-                            <button ion-fab class="topbutton navigate" (click)="showItOnMap(crag)"><ion-icon name="navigate" style="font-size:35px;" color="secondary"></ion-icon></button>
-                        </ion-col>
-                        <ion-col>
-                            <p>Απόσταση</p>
-                            <p>{{crag.distance}} km</p>
-                        </ion-col>
-                    </ion-row>
-                </ion-avatar>
-            </ion-item>
+        <ion-item>
+            <ion-thumbnail item-left>
+                <img [src]="crag.imagePath">
+            </ion-thumbnail>
+            {{crag.name}}
+            <ion-avatar item-right>
+                <ion-row center text-center>
+                    <ion-col>
+                        <button ion-fab class="topbutton navigate" (click)="showItOnMap(crag)"><ion-icon name="navigate" style="font-size:35px;" color="secondary"></ion-icon></button>
+                    </ion-col>
+                    <ion-col>
+                        <p>Απόσταση</p>
+                        <p>{{crag.distance}} km</p>
+                    </ion-col>
+                </ion-row>
+            </ion-avatar>
+        </ion-item>
 
-            <ion-row class="left-border-primary" center>
-                <ion-col>
-                    <button color="primary" clear small (click)="viewCragRoutes(crag._id)">
+        <ion-row class="left-border-primary" center>
+            <ion-col>
+                <button color="primary" clear small (click)="viewCragRoutes(crag._id)">
                     <ion-icon name="quote"></ion-icon>
                     <div>{{crag.routes.length}} Διαδρομές</div>
                 </button>
-                </ion-col>
-                <ion-col center text-center>
-                    <ion-row>
-                        <ion-col width-33>
-                            <button ion-fab mini (click)="getDirections(crag)"><ion-icon name='walk' color="secondary"></ion-icon></button>
-                        </ion-col>
-                        <ion-col width-33>
-                            <button ion-fab mini (click)="weatherForecast(crag)"><ion-icon name='cloudy-night' color="gold"></ion-icon></button>
-                        </ion-col>
-                        <ion-col width-33>
-                            <button ion-fab mini (click)="getCragInfo(crag)"><ion-icon name="information-circle" color="light"></ion-icon></button>
-                        </ion-col>
-                    </ion-row>
-                </ion-col>
-            </ion-row>
-        </ion-card>
-    </ion-item>
-    <!--<ion-item-options>
+            </ion-col>
+            <ion-col center text-center>
+                <ion-row>
+                    <ion-col width-33>
+                        <button ion-fab mini (click)="getDirections(crag)"><ion-icon name='car' color="secondary"></ion-icon></button>
+                    </ion-col>
+                    <ion-col width-33>
+                        <button ion-fab mini (click)="weatherForecast(crag)"><ion-icon name='cloudy-night' color="gold"></ion-icon></button>
+                    </ion-col>
+                    <ion-col width-33>
+                        <button ion-fab mini (click)="getCragInfo(crag)"><ion-icon name="information-circle" color="light"></ion-icon></button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+</ion-item>
+<!--<ion-item-options>
         <button ion-button color="favorite" (click)="addFavorite(slidingItem, crag)" >Favorite</button>
         <button ion-button color="gold" (click)="addYolo(slidingItem, crag)">Yolo</button>
         <button ion-button icon-only color="danger" (click)="removeFavorite(slidingItem, crag, 'Αφαίρεση Ενδιαφέρον')" *ngIf="segment==='favorites'">Αφαίρεση</button>

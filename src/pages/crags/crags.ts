@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ItemSliding } from 'ionic-angular';
-
+import { NavController, ItemSliding, } from 'ionic-angular';
+import { FormControl } from '@angular/forms';
 import { MapService } from '../../services/map.service';
 import { MappingsService } from '../../services/mappings.service';
 
@@ -15,6 +15,9 @@ import { ICrag, IRoute } from '../../shared/interfaces'
 
 export class CragsPage implements OnInit {
 
+    searching: boolean = false;
+    searchTerm: string = '';
+    searchControl: FormControl;
     segment = 'all';
     excludeCrags = [];
     queryText = '';
@@ -28,13 +31,41 @@ export class CragsPage implements OnInit {
         console.log('Constructing crags.....');
         this.getCurrentLocation();
         this.loadCrags();
+        this.searchControl = new FormControl();
     }
 
     ngOnInit() {
-        console.log('Initializing crags.....');
-        this.segment = 'all';
         this.getCurrentLocation();
         this.loadCrags();
+    }
+
+    ionViewDidLoad() {
+        this.loadCrags();
+
+        this.searchControl.valueChanges.debounceTime(700)
+            .subscribe(search => {
+                this.searching = false;
+                this.loadCrags();
+            });
+    }
+
+    onSearchInput() {
+        this.searching = true;
+    }
+
+    //load crags
+    loadCrags() {
+        var that = this;
+        return new Promise(resolve => {
+            this.mapService.filterCrags(this.searchTerm)
+            .then((data) => {
+                    that.crags = this.applyHaversine(data);
+                    that.crags.sort((locationA, locationB) => {
+                        return locationA.distance - locationB.distance;
+                    });
+                    resolve(that.crags)
+                });
+        });
     }
 
     //add button navigate to add-crag page
@@ -42,28 +73,8 @@ export class CragsPage implements OnInit {
         this.navController.push(AddCragPage);
     }
 
-    updateCrags() {
-
-    }
-
     viewCragRoutes(_id: string) {
         console.log('viewing....');
-    }
-
-    addFavorite(slidingItem: ItemSliding, cragData) {
-
-    }
-
-    addYolo(slidingItem: ItemSliding, cragData) {
-
-    }
-
-    removeFavorite(slidingItem: ItemSliding, cragData, title) {
-
-    }
-
-    removeYolo(slidingItem: ItemSliding, cragData, title) {
-
     }
 
     editCrag(crag): void {
@@ -72,25 +83,6 @@ export class CragsPage implements OnInit {
 
     deleteCrag(crag): void {
 
-    }
-
-    searchCrags() {
-
-    }
-
-    //load crags
-    loadCrags() {
-        var that = this;
-        return new Promise(resolve => {
-            this.mapService.getCrags()
-                .subscribe(data => {
-                    that.crags = this.applyHaversine(data);
-                    that.crags.sort((locationA, locationB) => {
-                        return locationA.distance - locationB.distance;
-                    });
-                    resolve(that.crags)
-                });
-        });
     }
 
     //Haversine algorithm

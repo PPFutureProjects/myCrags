@@ -32,7 +32,7 @@ export class MyApp {
 
   adminPages: IPage[] = [
     { title: 'Αναρριχητική Ημέρα', component: AddClimbPage, icon: 'ios-add-circle-outline' },
-    { title: 'Πεδίο', component: AddCragPage, icon: 'ios-add-circle-outline' },
+    // { title: 'Πεδίο', component: AddCragPage, icon: 'ios-add-circle-outline' },
     { title: 'Διαδρομή', component: AddRoutePage, icon: 'ios-add-circle-outline' }
   ];
 
