@@ -19,8 +19,6 @@ export class CragsPage implements OnInit {
     searchTerm: string = '';
     searchControl: FormControl;
     segment = 'all';
-    excludeCrags = [];
-    queryText = '';
     routes: IRoute[];
     crags: any;
     crag: ICrag;

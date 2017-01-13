@@ -4,7 +4,7 @@
         <button ion-button menuToggle>
         <ion-icon name='menu'></ion-icon>
     </button>
-        <ion-segment [(ngModel)]="segment" (ionChange)="updateCrags()">
+        <ion-segment [(ngModel)]="segment" (ionChange)="updateCrags(segment)">
             <ion-segment-button value="all">
                 Όλα
             </ion-segment-button>
